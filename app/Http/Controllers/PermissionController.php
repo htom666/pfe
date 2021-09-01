@@ -47,7 +47,7 @@ class PermissionController extends Controller
             $success = true;
             $message = "cannot be deleted";
         }
-        return response()->jspn([
+        return response()->json([
             'success' =>$success,
             'message' =>$message,
         ]);

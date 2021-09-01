@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Company;
 use Illuminate\Http\Request;
 use App\Http\Requests\CompanyRequest;
+use App\Models\Client;
+use Illuminate\Support\Facades\DB;
 
 class CompanyController extends Controller
 {
@@ -15,10 +17,10 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $company = Company::all();
+        $companies = Company::all();
 
 
-        return view('company.company', compact('company'));
+        return view('company.company', compact('companies'));
     }
 
     /**
@@ -30,6 +32,65 @@ class CompanyController extends Controller
     {
         return view("company.create");
     }
+
+    public function internalCreate()
+    {
+        $clients = Client::all();
+        return view('company.comcreate',compact('clients'));
+    }
+
+    public function storage(Request $request)
+    {
+        Company::create([
+            "client_id"=>$request->client_id,
+            "name"=>$request->name,
+            "juridikform"=>$request->juridikform,
+            "siret"=>$request->siret,
+            "apenaf"=>$request->apenaf,
+            "tvaintra"=>$request->tvaintra,
+            "immatricule"=>$request->immatricule,
+            "phone"=>$request->phone,
+            "fax"=>$request->fax,
+            "adresse"=>$request->adresse,
+            "city"=>$request->company_city,
+            "state"=>$request->company_state,
+            "zip"=>$request->company_zip,
+            "bank_name" => $request->bank_name,
+            "rib" => $request->rib,
+            "iban" => $request->iban,
+            "bic" => $request->bic,
+
+        ]);
+        return back()->with('success','Company created successfuly');
+    }
+    public function updatage(Request $request,Company $company)
+    {
+        $id = $company->id;
+        DB::table('companies')
+        ->where('id',$id)
+        ->update([
+            "client_id"=>$request->client_id,
+            "name"=>$request->name,
+            "juridikform"=>$request->juridikform,
+            "siret"=>$request->siret,
+            "apenaf"=>$request->apenaf,
+            "tvaintra"=>$request->tvaintra,
+            "immatricule"=>$request->immatricule,
+            "phone"=>$request->phone,
+            "fax"=>$request->fax,
+            "adresse"=>$request->adresse,
+            "city"=>$request->company_city,
+            "state"=>$request->company_state,
+            "zip"=>$request->company_zip,
+            "bank_name" => $request->bank_name,
+            "rib" => $request->rib,
+            "iban" => $request->iban,
+            "bic" => $request->bic,
+
+        ]);
+        return back()->with('success','company update successfuly');
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -64,6 +125,11 @@ class CompanyController extends Controller
     public function edit(Company $company)
     {
         return view('company.edit',compact('company'));
+    }
+    public function editage(Company $company)
+    {
+        $clients = Client::all();
+        return view('company.editage',compact('company','clients'));
     }
 
     /**

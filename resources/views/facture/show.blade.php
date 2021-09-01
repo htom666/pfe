@@ -7,7 +7,21 @@
 		<input type="hidden" name="id" value="{{$facture->id}}">
 		<div class="panel-header">
 			<h3 class="panel-title">Invoice {{$facture->invoice_number }}</h3>
+			
 		</div>
+		@if (Session::has('success'))
+		<div class="alert alert-success alert-dismissible alert-dismissible-2" data-animation="fadeOut"
+			role="alert">
+			<strong>{{ Session::get('success') }}</strong>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+					<path class="heroicon-ui"
+						d="M16.24 14.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 0 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12l2.83 2.83z">
+					</path>
+				</svg>
+			</button>
+		</div>
+  @endif
 		<div class="panel-body">
 			<div class="invoice-1">
 				<div>
@@ -15,16 +29,16 @@
 				<div class="row">
 
 					<div class="col-md-6">
-						<img src="{{asset("/public/storage/logo/$user->id/$user->logo")}}" alt="Company logo" class="logo">
+						<img src="{{asset('storage/logo/'.$user->id.'/'.$user->logo)}}" alt="Company logo" class="logo">
 					</div>
-
+					
 				</div>
 
 				<div class="row mt-4">
 
 					<div class="col-md-6">
-						<h5 class="heading">Cummings Agency</h5>
-						<p class="address">8888 Cummings Vista Apt. 101, Susanbury, NY 95473</p>
+						<h5 class="heading">{{$user->company}}</h5>
+						<p class="address">{{$user->company}} {{$user->address}} VAT {{$user->tax_ref_number}}  SHARE CAPITAL  {{$user->capital}}</p>
 					</div>
 					<div class="col-md-6 text-right">
 						<div class="recipient-block">
@@ -136,23 +150,24 @@
 			</div>
 
 				<div class="row d-print-none mt-4">
-
+					<form method="POST" action="{{route('facture.send',$facture->id)}}">
+						@csrf
 					<div class="col-md-12">
-						<a href="#" class="btn btn-primary btn-has-icon btn-icon-split">
+						<button type="submit" class="btn btn-primary btn-has-icon btn-icon-split">
 							<span class="icon"><i class="fas fa-credit-card"></i></span>
-							<span>Proceed To Payment</span>
-						</a>
+							<span>Send Email</span>
+						</button>
 						<button type="button" class="btn btn-secondary btn-has-icon btn-icon-split btn-panel-print">
 							<span class="icon"><i class="fas fa-print"></i></span>
 							<span>Print</span>
 						</button>
 						<a class="btn btn-primary" href="{{ URL::to('/facture/pdf',$facture->id) }}">Export to PDF</a>
-						<form method="POST" action="{{route('facture.send',$facture->id)}}">
+						{{-- <form method="POST" action="{{route('facture.send',$facture->id)}}">
 							@csrf
 							<input type="submit" value="send">
 						
-							{{-- <a class="btn btn-primary" href="{{ URL::to('/facture/sendmail',$facture->id)}}">Send Mail</a> --}}
-						</form>
+							{{-- <a class="btn btn-primary" href="{{ URL::to('/facture/sendmail',$facture->id)}}">Send Mail</a>
+						</form> --}}
 						</div>
 
 				</div>

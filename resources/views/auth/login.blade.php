@@ -85,11 +85,6 @@
                                         </div>
                                     
                                 </div>
-
-
-								<div class="form-group">
-									<a href="#">Forgot your password?</a>
-								</div>
                                 <div class="form-group form-group-btns text-center">
                                     <div class="row no-gutters">
                                         <div class="col-md-12">
@@ -97,17 +92,8 @@
                                             {{ __('Login') }}
                                         </button>
                                         </div>
-        
-                                        @if (Route::has('password.request'))
-                                            <a class="btn btn-link" href="{{ route('password.request') }}">
-                                                {{ __('Forgot Your Password?') }}
-                                            </a>
-                                        @endif
                                     </div>
                                 </div>
-                            <div class="form-group text-center">
-									Dont have an acount? <a href="#" class="text-danger font-weight-600">Register Now</a>
-								</div>
 		
 							</div>
                             </form>
@@ -128,7 +114,7 @@
 
 <!-- Mirrored from exon.arsaland.com/html/pages/auth/login-3.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 27 Aug 2020 13:01:13 GMT -->
 </html> 
-<div class="container">
+{{-- <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -196,5 +182,5 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 @endsection

@@ -18,6 +18,8 @@ class CreateDeliveriesTable extends Migration
             $table->integer('facutre_id');
             $table->integer('user_id');
             $table->json('products');
+            $table->integer('quantity');
+            $table->integer('quantity_rest');
             $table->timestamps();
         });
     }

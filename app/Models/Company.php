@@ -12,6 +12,6 @@ class Company extends Model
 
     public function client()
     {
-        return $this->belongsTo('App\Model\Company');
+        return $this->belongsTo(Client::class);
     }
 }

@@ -1,6 +1,138 @@
 
 @extends('layout.main')
 @section('content')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.js"></script>
+<div class="page-content">
+	<!-- Invoice #3452321 -->
+	<div class="panel">
+		<input type="hidden" name="id" value="{{$facture->id}}">
+		<div class="panel-header">
+			<h3 class="panel-title">Invoice {{$facture->invoice_number }}</h3>
+			
+		</div>
+		@if (Session::has('success'))
+		<div class="alert alert-success alert-dismissible alert-dismissible-2" data-animation="fadeOut"
+			role="alert">
+			<strong>{{ Session::get('success') }}</strong>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+					<path class="heroicon-ui"
+						d="M16.24 14.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 0 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12l2.83 2.83z">
+					</path>
+				</svg>
+			</button>
+		</div>
+  @endif
+  <div class="panel-body">
+    <div class="invoice-1">
+        <div>
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <img src="{{asset('storage/logo/'.$user->id.'/'.$user->logo)}}" alt="Company logo" class="logo">
+            </div>
+            
+        </div>
+
+        <div class="row mt-4">
+
+            <div class="col-md-6">
+                <h5 class="heading">{{$user->company}}</h5>
+                <p class="address">{{$user->company}} {{$user->address}} VAT {{$user->tax_ref_number}}  SHARE CAPITAL  {{$user->capital}}</p>
+            </div>
+            <div class="col-md-6 text-right">
+                <div class="recipient-block">
+                    <h5 class="heading">To</h5>
+                    <p>{{$client->nom}} {{ $client->prenom }} {{$facture->company_address}}</p>
+                </div>
+            </div>
+
+        </div>
+		<div class="row mt-1 no-gutters bg-primary-lightened p-3">
+
+			<div class="col-md-6">
+				<p class="key-value">Issue Date : <span>{{$delivery->created_at}}</span></p>
+			</div>
+			<div class="col-md-6 text-right">
+				<div class="recipient-block">
+				</div>
+			</div>
+
+		</div>
+		
+		<div class="row mt-4">
+
+			<div class="col-md-12">
+
+				<div class="table-responsive">
+
+					<table class="table table-bordered mb-0">
+						<thead>
+							<tr class="bg-dark">
+								<th>#</th>
+								<th>Description</th>
+								<th>Quantity</th>
+								<th>Unit Price</th>
+								<th>Total</th>
+							</tr>
+						</thead>
+						<tbody>
+						@foreach (json_decode($delivery->products) as $product)
+						<tr>
+							<td class="text-center">{{ $product->product_id}}</td>
+							<td>{{ $product->product_name}}</td>
+							<td class="text-right">{{ $product->quantity}}</td>
+							<td class="text-right">{{ $product->price}}</td>
+							<td class="text-right">{{ $product->total_price}}</td>
+						</tr>
+				@endforeach
+			</tbody>
+		</table>
+		
+	</div>
+
+</div>
+
+</div>
+<div class="row d-print-none mt-4">
+	<div class="col-md-12">
+	<button type="button" class="btn btn-secondary btn-has-icon btn-icon-split btn-panel-print">
+		<span class="icon"><i class="fas fa-print"></i></span>
+		<span>Print</span>
+	</button>
+</div>
+
+</div>
+
+</div>
+</div>
+</div>
+@endsection
+{{-- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="container bootstrap snippets bootdeys">
 <div class="row">
@@ -46,7 +178,7 @@
 					<p>VAT: DK888-777 </p>
 					<p>Total Amount: $1019</p>
 					<p>Account Name: Flatter</p>
-			    </div> --}}
+			    </div> 
 
 			</div>
 
@@ -88,7 +220,7 @@
 			          <p>Discount (10%) : $101 </p>
 			          <p>VAT ({{$delivery->facture->tva}}%) : {{$tax}} </p>
 			          <p>Total : {{$ttc}} </p>
-			</div> --}}
+			</div> 
 			</div>
 
 		  </div>
@@ -113,4 +245,4 @@
         localtion.reload();
     }
     </script>
-@endsection
+@endsection --}}

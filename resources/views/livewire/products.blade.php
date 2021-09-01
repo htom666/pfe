@@ -78,6 +78,11 @@
           <tr>
             <th class="text-center">Tax Amount</th>
             <td class="text-center"><input type="number" id="ttc" name="tax" value="{{$tax}}" class="form-control"></td>
+            @error('tax')
+            <div class="error">
+            {{ $message }}
+           </div>
+           @enderror
           </tr>
           <tr>
             <th class="text-center">Timbre Fiscal</th>

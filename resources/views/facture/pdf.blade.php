@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="{{ltrim(public_path('vendor/ari_d/js-list-manager/js-list-manager.css'), '/')}}">
 <link rel="stylesheet" href="{{ltrim(public_path('layouts/layout-1/css/app8bb9.css?v=545'), '/')}}">
 
-<link rel="stylesheet" href="{{ ltrim(public_path('css/vendor.css'), '/') }}" />
+<link rel="stylesheet" href="{{ltrim(public_path('css/vendor.css'), '/') }}" />
 <link rel="stylesheet" href="{{ltrim(public_path('vendor/jquery-dataTables/css/dataTables.bootstrap4.min.css'), '/')}}">
 <link rel="stylesheet" href="{{ltrim(public_path('vendor/jquery-dataTables/css/buttons.bootstrap.min.css'), '/')}}">
 
@@ -28,7 +28,7 @@
 				<div class="row">
 
 					<div class="col-md-6">
-						<img src="../../../assets/misc/logos/4.png" alt="Company logo" class="logo">
+						<img src="{{asset('storage/logo/'.$user->id.'/'.$user->logo)}}" alt="Company logo" class="logo">
 					</div>
 
 				</div>
@@ -176,3 +176,171 @@
     
     <script src="{{ltrim(public_path('js/pages/datatables/datatables.net/column-search.js'), '/')}}"></script>
 <script src="{{ltrim(public_path('js/pages/index.js'), '/')}}"></script>
+
+
+
+
+{{-- <style>
+
+body{margin-top:20px;
+	background:#eee;
+	}
+	
+	.invoice {
+		padding: 30px;
+	}
+	
+	.invoice h2 {
+		margin-top: 0px;
+		line-height: 0.8em;
+	}
+	
+	.invoice .small {
+		font-weight: 300;
+	}
+	
+	.invoice hr {
+		margin-top: 10px;
+		border-color: #ddd;
+	}
+	
+	.invoice .table tr.line {
+		border-bottom: 1px solid #ccc;
+	}
+	
+	.invoice .table td {
+		border: none;
+	}
+	
+	.invoice .identity {
+		margin-top: 10px;
+		font-size: 1.1em;
+		font-weight: 300;
+	}
+	
+	.invoice .identity strong {
+		font-weight: 600;
+	}
+	
+	
+	.grid {
+		position: relative;
+		width: 100%;
+		background: #fff;
+		color: #666666;
+		border-radius: 2px;
+		margin-bottom: 25px;
+		box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+	}
+</style>
+<div class="container">
+	<div class="row">
+						<!-- BEGIN INVOICE -->
+						<div class="col-xs-12">
+							<div class="grid invoice">
+								<div class="grid-body">
+									<div class="invoice-title">
+										<div class="row">
+											<div class="col-xs-12">
+												<img src="{{asset('storage/logo/'.$user->id.'/'.$user->logo)}}" alt="" height="35">
+											</div>
+										</div>
+										<br>
+										<div class="row">
+											<div class="col-xs-12">
+												<h2>invoice<br>
+												<span class="small">{{$facture->invoice_number}}</span></h2>
+											</div>
+										</div>
+									</div>
+									<hr>
+									<div class="row">
+										<div class="col-xs-6">
+											<address>
+												<strong>Billed To:</strong><br>
+												{{ $facture->client->nom }} {{ $facture->client->prenom }}.<br>
+												{{ $facture->company_address }}<br>
+												<abbr title="Phone">P:</abbr>{{$facture->client->phone}}
+											</address>
+										</div>
+										<div class="col-xs-6 text-right">
+											<address>
+												<strong>From:</strong><br>
+												{{$user->company}}<br>
+												{{$user->address}} VAT {{$user->tax_ref_number}},<br>
+												SHARE CAPITAL  {{$user->capital}}<br>
+												<abbr title="Phone">P:</abbr> (123) 345-6789
+											</address>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-xs-6">
+											<address>
+												<strong>Order Date:</strong><br>
+												{{ $facture->invoice_date }}<br>
+											</address>
+										</div>
+										<div class="col-xs-6 text-right">
+											<address>
+												<strong>Issue Date:</strong><br>
+												{{ $facture->expiration_date }}<br>
+											</address>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<h3>INVOICE SUMMARY</h3>
+											<table class="table table-striped">
+												<thead>
+													<tr class="line">
+														<td><strong>#</strong></td>
+														<td class="text-center"><strong>Description</strong></td>
+														<td class="text-center"><strong>Quantity</strong></td>
+														<td class="text-right"><strong>Unit Price</strong></td>
+														<td class="text-right"><strong>Total</strong></td>
+													</tr>
+												</thead>
+												<tbody>
+													@foreach ($facture->products as $product)
+														<tr>
+														<td>{{ $product->id }}</td>
+														<td>{{ $product->name }}</td>
+														<td>{{ $product->pivot->quantity }}</td>
+														<td>{{ $product->price }}</td>
+														<td>{{ $product->price * $product->pivot->quantity }}</td>
+													</tr>
+													@endforeach
+													@foreach ($facture->services as $service)
+												<tr>
+												<td>{{ $service->id }}</td>
+												<td>{{ $service->name }}</td>
+												<td>{{ $service->pivot->quantity }}</td>
+												<td>{{ $service->price }}</td>
+												<td>{{ $service->price * $service->pivot->quantity }}</td>
+												</tr>
+												@endforeach
+													<tr>
+														<td colspan="3"></td>
+														<td class="text-right"><strong>Subtotal</strong></td>
+														<td class="text-right"><strong>{{$facture->pht}}</strong></td>
+													</tr>
+													<tr>
+														<td colspan="3">
+														</td><td class="text-right"><strong>VAT</strong></td>
+														<td class="text-right"><strong>{{$facture->tva}}</strong></td>
+													</tr>
+													<tr>
+														<td colspan="3">
+														</td><td class="text-right"><strong>TAX</strong></td>
+														<td class="text-right"><strong>{{$facture->tax}}</strong></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>									
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- END INVOICE -->
+					</div> --}}
+	{{-- </div> --}}

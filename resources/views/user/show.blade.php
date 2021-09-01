@@ -1,8 +1,22 @@
 @extends('layout.main')
 @section('content')
-<h3> Name : {{$user->name}}</h3>
-<h3> Email : {{$user->email}}</h3>
-
-<h1> Permission</h1>
-<h1> Role</h1>
+<table class="table">
+    <thead>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Role</th>
+    <th>Action</th>
+</thead>
+<tbody>
+    @foreach ($users as $user)
+    <tr>
+        <td>{{$user->name}}</td>
+        <td>{{$user->email}}</td>
+        <td>{{$user->role->name}}</td>
+        <td>Action</td>
+    </tr>
+        
+    @endforeach
+</tbody>
+</table>
 @endsection

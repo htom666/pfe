@@ -5,7 +5,7 @@
         <h1 class="panel-title">Invoice List</h1>
     </div>
     <div class="panel-body">
-        <a href="{{route('facture.create')}}" class="btn btn-success pull-right"><span>ADD NEW INVOICE</span></a>
+        <a href="{{route('facture.create')}}" class="btn btn-info-lightened"><span>Add New Invoice</span></a>
         <br>
         <br>
         <div class="row">
@@ -48,7 +48,7 @@
                             <td>{{ $facture->invoice_date }}</td>
                             <td>{{ $facture->expiration_date }}</td>
                             <td>
-                                @if($facture->rest_to_pay = 0)
+                                @if($facture->rest_to_pay <= 0)
                                 
                                 <span class="m-1 badge badge-pill badge-success-light">Paid</span>
                                 @elseif ($facture->rest_to_pay < ($facture->rest_to_pay)/2 )

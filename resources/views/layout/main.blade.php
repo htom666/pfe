@@ -41,6 +41,24 @@
 
     <link rel="stylesheet" href="{{asset('css/invoices/invoices.css')}}">
 
+    <link rel="stylesheet" href="{{asset('vendor/select2/select2.min.css')}}">
+
+    <link rel="stylesheet" href="{{asset('vendor/morrisjs/morris.css')}}">
+    <link rel="stylesheet" href="{{asset('vendor/apexcharts/apexcharts.css')}}">
+
+    <link rel="stylesheet" href="{{asset('vendor/chartjs/Chart.min.css')}}">
+
+
+    <link rel="stylesheet" href="{{asset('vendor/switchery/switchery.css')}}">
+
+
+    <link rel="stylesheet" href="{{asset('css/auth.css')}}">
+
+
+    <script src="{{asset('vendor/chartjs/Chart.min.js')}}"></script>
+    <script src="{{asset('js/pages/charts/chartjs/utils.js')}}"></script>
+    <script src="{{asset('js/pages/charts/chartjs/line.js')}}"></script>
+
     <!-- Page style codes or css links goes here. -->
 
 
@@ -526,7 +544,19 @@
 
     <script src="{{asset('js/pages/form/file-upload/jquery-upload.js')}}"></script>
     <script src="{{asset('vendor/jquery-file-upload/js/jquery.fileupload.js')}}"></script>
+    <script src="{{asset('vendor/checkboxesjs/jquery.checkboxes-1.2.2.min.js')}}"></script>
 
+
+    <script src="{{asset('vendor/select2/select2.full.min.js')}}"></script>
+    <script src="{{asset('js/pages/form/extended/select2.js')}}"></script>
+
+
+    <script src="{{asset('js/pages/widgets/widgets-chart.js')}}"></script>
+
+
+    <script src="{{asset('vendor/switchery/switchery.js')}}"></script>
+
+@yield('extra-js')
 
 @livewireScripts
 <script src="{{asset('js/pages/index.js')}}"></script>

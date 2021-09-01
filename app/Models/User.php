@@ -17,13 +17,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'logo',
-    
-    ];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -45,13 +39,20 @@ class User extends Authenticatable
     ];
     public function roles()
     {
-        return $this->belongsToMany(Role::class)->withTimestamps();
+        return $this->belongsTo(Role::class,'role_id');
     }
 
-    public function hasRole($input)
+    public function hasRole($permissions)
     {
-        foreach($this->role as $role){
-            if($role->name == $input){
+        $role = $this->role;
+        if (!$role) {
+            return false;
+        }
+        foreach($role->permissions as $permission){
+            if(is_array($permission)&& in_array($permission,$permissions)){
+                return true;
+            }else if (is_string($permissions)&& strcmp($permissions,$permission) == 0)
+            {
                 return true;
             }
         }

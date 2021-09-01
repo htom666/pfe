@@ -27,7 +27,6 @@ class Products extends Component
     public $i=1;
     public function mount()
     {
-
         $this->tax = 0;
         $this->tva = 0;
         $this->ttc = 0;
@@ -35,8 +34,15 @@ class Products extends Component
         $this->service_price = 0;
         $this->product = Product::orderBy('id', 'desc')->first();
         $this->service = Service::orderBy('id', 'desc')->first();
-        $this->product_id = $this->product->id;
-        $this->service_id = $this->service->id;
+        if(!$this->product_id == null)
+        {
+            $this->product_id = $this->product->id;
+        }
+        if(!$this->service_id == null)
+        {
+            $this->service_id = $this->service->id;
+        }
+        
         $this->allProducts = Product::orderBy('id', 'desc')->get();
         
         $this->allServices = Service::orderBy('id', 'desc')->get();

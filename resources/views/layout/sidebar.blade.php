@@ -1,16 +1,27 @@
 <nav id="sidebar" class="sidebar">
     <div class="sidebar-brand">
-        <img src="../../../assets/layouts/logos/logo.png" class="img" alt="">
-        <img src="../../../assets/layouts/logos/logo-sm.png" class="img-sm" alt="">
+        <img src="../../../assets/cc.png" width="200" height="200" alt="" style="padding-top:10px;">
+        <img src="../../../assets/cc.png" class="img-sm" alt="">
     </div>
     <ul class="sidebar-menu">
         <li class="header-menu">
             <span>Inventory</span>
         </li>
         <li>
+            {{---Dashbord ---}}
+            {{-- @if(Session::ge('page') == "dashboard")
+            @php
+            $active = "active current";
+            @endphp
+            @else 
+            @php
+             $active = "";   
+            @endphp
+            @endif
+            <li class="{{$active}}"> --}}
             <a href="{{ route('dashboard.index')}}">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 6 4 L 6 28 L 26 28 L 26 4 Z M 8 6 L 24 6 L 24 11 L 8 11 Z M 8 13 L 24 13 L 24 19 L 8 19 Z M 8 21 L 24 21 L 24 26 L 8 26 Z"/></svg>
-                <span>Accounting</span>
+                <span>Dashboard</span>
                 <i class="chevron">
                     <svg fill="#ffffff" viewBox="0 0 1024 1024"><path class="path1" d="M256 1024c-6.552 0-13.102-2.499-18.101-7.499-9.998-9.997-9.998-26.206 0-36.203l442.698-442.698-442.698-442.699c-9.998-9.997-9.998-26.206 0-36.203s26.206-9.998 36.203 0l460.8 460.8c9.998 9.997 9.998 26.206 0 36.203l-460.8 460.8c-5 5-11.55 7.499-18.102 7.499z"></path></svg>
                 </i>
@@ -27,7 +38,7 @@
             <ul class="sidebar-submenu" style="display: block;">
 
                 <li class="current active">
-                    <a href="{{ route('home')}}">
+                    <a href="{{ route('product.product')}}">
                         View Products
                     </a>
                 </li>
@@ -42,7 +53,7 @@
         <li>
             <a href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 8.21875 5 L 8.0625 5.8125 L 7.5625 8.6875 L 7.34375 9.875 L 21.46875 9.875 L 21.15625 11.6875 L 7.03125 11.6875 L 6.875 12.5 L 6.375 15.375 L 6.15625 16.53125 L 20.28125 16.53125 L 19.5625 20.59375 L 14.34375 23 L 10.25 20.75 L 10.46875 19.53125 L 10.6875 18.375 L 5.8125 18.375 L 5.6875 19.1875 L 5 23 L 4.84375 23.75 L 5.53125 24.09375 L 13.34375 27.90625 L 13.75 28.09375 L 14.15625 27.9375 L 23.3125 24.09375 L 23.8125 23.90625 L 23.9375 23.34375 L 27 6.1875 L 27.21875 5 Z M 9.875 7 L 24.8125 7 L 22.0625 22.46875 L 13.78125 25.875 L 7.09375 22.625 L 7.5 20.375 L 8.28125 20.375 L 8.03125 21.8125 L 8.65625 22.15625 L 13.8125 25 L 14.25 25.25 L 14.71875 25.03125 L 20.875 22.1875 L 21.34375 21.96875 L 21.4375 21.4375 L 22.46875 15.71875 L 22.6875 14.53125 L 8.5625 14.53125 L 8.6875 13.6875 L 22.84375 13.6875 L 22.96875 12.84375 L 23.65625 9.03125 L 23.875 7.875 L 9.75 7.875 Z"/></svg>
-                <span>Ventes</span>
+                <span>Invoices & Estimates</span>
                 <i class="chevron">
                     <svg fill="#ffffff" viewBox="0 0 1024 1024"><path class="path1" d="M256 1024c-6.552 0-13.102-2.499-18.101-7.499-9.998-9.997-9.998-26.206 0-36.203l442.698-442.698-442.698-442.699c-9.998-9.997-9.998-26.206 0-36.203s26.206-9.998 36.203 0l460.8 460.8c9.998 9.997 9.998 26.206 0 36.203l-460.8 460.8c-5 5-11.55 7.499-18.102 7.499z"></path></svg>
                 </i>
@@ -66,12 +77,6 @@
                         Payed Invoices
                     </a>
                 </li>
-
-                <li>
-                    <a href="../../style/navbar-static.html">
-                        Invoices Statistics
-                    </a>
-                </li>
                 <li>
                     <a href="{{route('facture.unpayed')}}">
                         Unpaied Invoices
@@ -84,8 +89,13 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{route('discount.show')}}">
+                        Discounts
+                    </a>
+                </li>
+                <li>
                     <a href="{{ route('process.process')}}">
-                        process
+                        Extract data
                     </a>
                 </li>
 
@@ -95,36 +105,61 @@
         <li>
             <a href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 6 4 L 6 28 L 26 28 L 26 4 Z M 8 6 L 24 6 L 24 11 L 8 11 Z M 8 13 L 24 13 L 24 19 L 8 19 Z M 8 21 L 24 21 L 24 26 L 8 26 Z"/></svg>
-                <span>Accounting</span>
+                <span>History</span>
                 <i class="chevron">
                     <svg fill="#ffffff" viewBox="0 0 1024 1024"><path class="path1" d="M256 1024c-6.552 0-13.102-2.499-18.101-7.499-9.998-9.997-9.998-26.206 0-36.203l442.698-442.698-442.698-442.699c-9.998-9.997-9.998-26.206 0-36.203s26.206-9.998 36.203 0l460.8 460.8c9.998 9.997 9.998 26.206 0 36.203l-460.8 460.8c-5 5-11.55 7.499-18.102 7.499z"></path></svg>
                 </i>
             </a>
             <ul class="sidebar-submenu">
                 <li>
-                    <a href="{{route('user.user')}}">
-                        Users
+                    <a href="{{route('facture.trash')}}">
+                        Deleted Invoices
                     </a>
                 </li>
 
                 <li>
                     <a href="../../ui-elements/alerts.html">
-                        My Accounting
+                        Deleted Estimates
                     </a>
                 </li>
-
                 <li>
-                    <a href="../../ui-elements/badge.html">
-                        Accounting Reports
+                    <a href="../../ui-elements/alerts.html">
+                        Deleted Products
+                    </a>
+                </li>
+                <li>
+                    <a href="../../ui-elements/alerts.html">
+                        Deleted Services
                     </a>
                 </li>
             </ul>
         </li>
+        <li>
+            <a href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 6 4 L 6 28 L 26 28 L 26 4 Z M 8 6 L 24 6 L 24 11 L 8 11 Z M 8 13 L 24 13 L 24 19 L 8 19 Z M 8 21 L 24 21 L 24 26 L 8 26 Z"/></svg>
+                <span>Companies</span>
+                <i class="chevron">
+                    <svg fill="#ffffff" viewBox="0 0 1024 1024"><path class="path1" d="M256 1024c-6.552 0-13.102-2.499-18.101-7.499-9.998-9.997-9.998-26.206 0-36.203l442.698-442.698-442.698-442.699c-9.998-9.997-9.998-26.206 0-36.203s26.206-9.998 36.203 0l460.8 460.8c9.998 9.997 9.998 26.206 0 36.203l-460.8 460.8c-5 5-11.55 7.499-18.102 7.499z"></path></svg>
+                </i>
+            </a>
+            <ul class="sidebar-submenu">
+                <li>
+                    <a href="{{route('company.company')}}">
+                        Company list
+                    </a>
+                </li>
 
+                <li>
+                    <a href="../../ui-elements/alerts.html">
+                        Something to be added
+                    </a>
+                </li>
+            </ul>
+        </li>
         <li>
             <a href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 9 4 C 7.346 4 6 5.346 6 7 C 6 8.3016094 6.8387486 9.4021391 8 9.8164062 L 8 11.304688 L 8 23.207031 L 8 27.023438 C 8 27.563438 8.4365625 28 8.9765625 28 L 9.0234375 28 C 9.5634375 28 10 27.563437 10 27.023438 L 10 22.228516 C 10.334707 21.839756 11.138423 21.046875 13.445312 21.046875 C 14.669313 21.046875 15.670422 21.473781 16.732422 21.925781 C 17.769422 22.367781 18.841891 22.824219 20.087891 22.824219 C 22.446891 22.824219 24.049375 21.584688 24.734375 21.054688 L 24.886719 20.939453 C 25.437719 20.540453 26 19.996 26 19 L 26 10.675781 C 26 9.7677812 25.221828 9 24.298828 9 C 23.803828 9 23.440406 9.2865937 22.941406 9.6835938 C 22.279406 10.207594 21.280891 11 20.087891 11 C 19.272891 11 18.477688 10.619734 17.554688 10.177734 C 16.403687 9.6257344 15.098359 9 13.443359 9 C 12.308257 9 11.421687 9.1883393 10.712891 9.4570312 C 11.489071 8.9141824 12 8.0167802 12 7 C 12 5.346 10.654 4 9 4 z M 9 6 C 9.552 6 10 6.449 10 7 C 10 7.551 9.552 8 9 8 C 8.448 8 8 7.551 8 7 C 8 6.449 8.448 6 9 6 z M 13.443359 11 C 14.645359 11 15.638406 11.476469 16.691406 11.980469 C 17.736406 12.482469 18.817891 13 20.087891 13 C 21.842891 13 23.158047 12.054484 23.998047 11.396484 L 23.998047 19.066406 C 23.997047 19.070406 23.952984 19.145266 23.708984 19.322266 L 23.509766 19.474609 C 22.942766 19.912609 21.762891 20.824219 20.087891 20.824219 C 19.249891 20.824219 18.446625 20.482937 17.515625 20.085938 C 16.372625 19.597938 15.076359 19.044922 13.443359 19.044922 C 11.891359 19.044922 10.786 19.358 10 19.75 L 10 12.361328 C 10.345 11.905328 11.132359 11 13.443359 11 z"/></svg>
-                <span>Clients</span>
+                <span>Customers</span>
                 <i class="chevron">
                     <svg fill="#ffffff" viewBox="0 0 1024 1024"><path class="path1" d="M256 1024c-6.552 0-13.102-2.499-18.101-7.499-9.998-9.997-9.998-26.206 0-36.203l442.698-442.698-442.698-442.699c-9.998-9.997-9.998-26.206 0-36.203s26.206-9.998 36.203 0l460.8 460.8c9.998 9.997 9.998 26.206 0 36.203l-460.8 460.8c-5 5-11.55 7.499-18.102 7.499z"></path></svg>
                 </i>
@@ -132,24 +167,19 @@
             <ul class="sidebar-submenu">
 
                 <li>
-                    <a href="{{ route('client.client') }}">Clients</a>
+                    <a href="{{ route('client.client') }}">
+                        Customerss</a>
                 </li>
 
                 <li>
-                    <a href="{{ route('prospect.prospect') }}">
-                        Prospect
+                    <a href="{{ route('client.allclients') }}">
+                        Clients
                     </a>
                 </li>
 
                 <li>
-                    <a href="../../icons/lineawesome.html">
-                       Clients Contact
-                    </a>
-                </li>
-
-                <li>
-                    <a href="../../icons/themify.html">
-                        Prospect Contact
+                    <a href="{{route('client.allprospects')}}">
+                       Prospects
                     </a>
                 </li>
             </ul>
@@ -170,29 +200,22 @@
             <ul class="sidebar-submenu">
 
                <li>
-                    <a href="../layout-19/index-2.html">
+                    <a href="{{route('user.editProfile')}}">
                         Edit Profile                    </a>
                 </li>
 
                 <li>
-                    <a href="../../applications/file-manager.html">
+                    <a href="">
                         Logout
                     </a>
                 </li>
-
-                <li>
-                    <a href="../../applications/task-manager.html">
-                        Notes
-                    </a>
-                </li>
-
             </ul>
         </li>
 
         <li>
             <a href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 5 5 L 5 27 L 27 27 L 27 5 L 5 5 z M 7 7 L 15 7 L 15 15 L 7 15 L 7 7 z M 17 7 L 25 7 L 25 15 L 17 15 L 17 7 z M 7 17 L 15 17 L 15 25 L 7 25 L 7 17 z M 17 17 L 25 17 L 25 25 L 17 25 L 17 17 z"/></svg>
-                <span>Accountent</span>
+                <span>Users</span>
                 <i class="chevron">
                     <svg fill="#ffffff" viewBox="0 0 1024 1024"><path class="path1" d="M256 1024c-6.552 0-13.102-2.499-18.101-7.499-9.998-9.997-9.998-26.206 0-36.203l442.698-442.698-442.698-442.699c-9.998-9.997-9.998-26.206 0-36.203s26.206-9.998 36.203 0l460.8 460.8c9.998 9.997 9.998 26.206 0 36.203l-460.8 460.8c-5 5-11.55 7.499-18.102 7.499z"></path></svg>
                 </i>
@@ -200,14 +223,8 @@
             <ul class="sidebar-submenu">
 
                 <li>
-                    <a href="../../components/bootstrap-notify.html">
-                        Available Accountent
-                    </a>
-                </li>
-
-                <li>
-                    <a href="../../components/bootstrap-treeview.html">
-                        Bootstrap Treeview
+                    <a href="{{route('user.user')}}">
+                        Users List
                     </a>
                 </li>
             </ul>
@@ -221,13 +238,6 @@
                 </i>
             </a>
             <ul class="sidebar-submenu">
-
-                <li>
-                    <a href="{{ route('permissions.index') }}">
-                        Permissions
-                    </a>
-                </li>
-
                 <li>
                     <a href="{{route('roles.index')}}">
                         Roles
@@ -261,29 +271,6 @@
                 <li>
                     <a href="../../widgets/widgets-3.html">
                         Widgets 3
-                    </a>
-                </li>
-            </ul>
-        </li>
-
-        <li>
-            <a href="#">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 13 3 L 13 27 L 11 27 L 11 7 L 5 7 L 5 27 L 3 27 L 3 29 L 29 29 L 29 27 L 27 27 L 27 14 L 21 14 L 21 27 L 19 27 L 19 3 Z M 15 5 L 17 5 L 17 27 L 15 27 Z"/></svg>
-                <span>To Do List</span>
-                <i class="chevron">
-                    <svg fill="#ffffff" viewBox="0 0 1024 1024"><path class="path1" d="M256 1024c-6.552 0-13.102-2.499-18.101-7.499-9.998-9.997-9.998-26.206 0-36.203l442.698-442.698-442.698-442.699c-9.998-9.997-9.998-26.206 0-36.203s26.206-9.998 36.203 0l460.8 460.8c9.998 9.997 9.998 26.206 0 36.203l-460.8 460.8c-5 5-11.55 7.499-18.102 7.499z"></path></svg>
-                </i>
-            </a>
-            <ul class="sidebar-submenu">
-                <li>
-                    <a href="../../charts/apex.html">
-                        To Do
-                    </a>
-                </li>
-
-                <li>
-                    <a href="../../charts/flot.html">
-                        Done
                     </a>
                 </li>
             </ul>

@@ -16,9 +16,6 @@
             <div class="collapse navbar-collapse" id="navbar-top-collapsible">
                 <ul class="navbar-nav navbar-menu-secondary">
                     <li class="nav-item dropdown mega-dropdown">
-                        <a href="#" class="nav-link dropdown-toggle dropdown-nocaret" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Mega Menu
-                        </a>
                         <div class="dropdown-menu dropdown-menu-left">
                             <div class="row">
                                 <div class="col-lg-3 my-3">
@@ -136,75 +133,9 @@
                             </div>
                         </div>
                     </li>
-                    <li class="nav-item dropdown" id="dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         </a>
-                        <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
-                            <div class="dropdown-item dropdown">
-                                <a class="dropdown-toggle dropdown-nocaret" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-user-shield"></i>
-                                    <span>Support Center</span>
-                                    <i class="chevron">
-                                        <svg fill="#ffffff" viewBox="0 0 1024 1024"><path class="path1" d="M256 1024c-6.552 0-13.102-2.499-18.101-7.499-9.998-9.997-9.998-26.206 0-36.203l442.698-442.698-442.698-442.699c-9.998-9.997-9.998-26.206 0-36.203s26.206-9.998 36.203 0l460.8 460.8c9.998 9.997 9.998 26.206 0 36.203l-460.8 460.8c-5 5-11.55 7.499-18.102 7.499z"></path></svg>
-                                    </i>
-                                </a>
-                                <div class="dropdown-menu">
-                                    <a href="#" class="dropdown-item">
-                                        <i class="fas fa-user-shield"></i>
-                                        <span>API Docs</span>
-                                    </a>
-
-                                    <div class="dropdown-item dropdown">
-                                        <a class="dropdown-toggle dropdown-nocaret" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-crown"></i>
-                                            <span>Community Tutorials</span>
-                                            <i class="chevron">
-                                                <svg fill="#ffffff" viewBox="0 0 1024 1024"><path class="path1" d="M256 1024c-6.552 0-13.102-2.499-18.101-7.499-9.998-9.997-9.998-26.206 0-36.203l442.698-442.698-442.698-442.699c-9.998-9.997-9.998-26.206 0-36.203s26.206-9.998 36.203 0l460.8 460.8c9.998 9.997 9.998 26.206 0 36.203l-460.8 460.8c-5 5-11.55 7.499-18.102 7.499z"></path></svg>
-                                            </i>
-                                        </a>
-                                        <div class="dropdown-menu">
-                                            <a href="#" class="dropdown-item">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 16.335938 6 16.671875 6.03125 17 6.0625 L 17 9.09375 C 16.671875 9.046875 16.339844 9 16 9 C 15.660156 9 15.328125 9.046875 15 9.09375 L 15 6.0625 C 15.328125 6.03125 15.664063 6 16 6 Z M 13 6.4375 L 13 9.6875 C 11.546875 10.382813 10.378906 11.546875 9.6875 13 L 6.46875 13 C 7.441406 9.875 9.882813 7.414063 13 6.4375 Z M 19 6.4375 C 22.113281 7.414063 24.585938 9.886719 25.5625 13 L 22.3125 13 C 21.621094 11.546875 20.453125 10.378906 19 9.6875 Z M 16 11 C 18.773438 11 21 13.226563 21 16 C 21 18.773438 18.773438 21 16 21 C 13.226563 21 11 18.773438 11 16 C 11 13.226563 13.226563 11 16 11 Z M 6.0625 15 L 9.0625 15 C 9.015625 15.324219 9 15.664063 9 16 C 9 16.339844 9.046875 16.671875 9.09375 17 L 6.0625 17 C 6.03125 16.671875 6 16.335938 6 16 C 6 15.664063 6.03125 15.328125 6.0625 15 Z M 22.90625 15 L 25.9375 15 C 25.96875 15.328125 26 15.664063 26 16 C 26 16.335938 25.96875 16.671875 25.9375 17 L 22.90625 17 C 22.953125 16.671875 23 16.339844 23 16 C 23 15.660156 22.953125 15.328125 22.90625 15 Z M 6.4375 19 L 9.6875 19 C 10.378906 20.453125 11.546875 21.621094 13 22.3125 L 13 25.5625 C 9.886719 24.585938 7.414063 22.113281 6.4375 19 Z M 22.3125 19 L 25.5625 19 C 24.585938 22.113281 22.113281 24.585938 19 25.5625 L 19 22.3125 C 20.453125 21.621094 21.621094 20.453125 22.3125 19 Z M 15 22.90625 C 15.328125 22.953125 15.660156 23 16 23 C 16.339844 23 16.671875 22.953125 17 22.90625 L 17 25.9375 C 16.671875 25.96875 16.335938 26 16 26 C 15.664063 26 15.328125 25.96875 15 25.9375 Z"/></svg>
-                                                <span>Support Center</span>
-                                            </a>
-                                            <a href="#" class="dropdown-item">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z M 16 10 C 13.800781 10 12 11.800781 12 14 L 14 14 C 14 12.882813 14.882813 12 16 12 C 17.117188 12 18 12.882813 18 14 C 18 14.765625 17.507813 15.445313 16.78125 15.6875 L 16.375 15.8125 C 15.558594 16.082031 15 16.863281 15 17.71875 L 15 19 L 17 19 L 17 17.71875 L 17.40625 17.59375 C 18.945313 17.082031 20 15.621094 20 14 C 20 11.800781 18.199219 10 16 10 Z M 15 20 L 15 22 L 17 22 L 17 20 Z"/></svg>
-                                                <span>API Docs</span>
-                                            </a>
-                                            <a href="#" class="dropdown-item">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z M 12 9.125 L 12 22.875 L 13.5 22 L 22.5 16.875 L 24 16 L 22.5 15.125 L 13.5 10 Z M 14 12.5625 L 19.96875 16 L 14 19.4375 Z"/></svg>
-                                                <span>Community Tutorials</span>
-                                            </a>
-                                            <a href="#" class="dropdown-item">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 16 3 C 8.800781 3 3 8.800781 3 16 C 3 23.199219 8.800781 29 16 29 C 23.199219 29 29 23.199219 29 16 C 29 14.601563 28.8125 13.207031 28.3125 11.90625 L 26.6875 13.5 C 26.886719 14.300781 27 15.101563 27 16 C 27 22.101563 22.101563 27 16 27 C 9.898438 27 5 22.101563 5 16 C 5 9.898438 9.898438 5 16 5 C 19 5 21.695313 6.195313 23.59375 8.09375 L 25 6.6875 C 22.699219 4.386719 19.5 3 16 3 Z M 27.28125 7.28125 L 16 18.5625 L 11.71875 14.28125 L 10.28125 15.71875 L 15.28125 20.71875 L 16 21.40625 L 16.71875 20.71875 L 28.71875 8.71875 Z"/></svg>
-                                                <span>Community Q&A</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <a href="#" class="dropdown-item">
-                                        <i class="fas fa-users"></i>
-                                        <span>Community Q&A</span>
-                                    </a>
-                                    <a href="#" class="dropdown-item">
-                                        <i class="fas fa-cube"></i>
-                                        <span>Products Docs</span>
-                                    </a>
-                                </div>
-                            </div>
-                            <a href="#" class="dropdown-item">
-                                <i class="fas fa-crown"></i>
-                                <span>API Docs</span>
-                            </a>
-                            <a href="#" class="dropdown-item">
-                                <i class="fas fa-users"></i>
-                                <span>Community Tutorials</span>
-                            </a>
-                            <a href="#" class="dropdown-item">
-                                <i class="fas fa-cube"></i>
-                                <span>Community Q&A</span>
-                            </a>
-                        </div>
                     </li>
                 </ul>
             </div>
@@ -215,213 +146,13 @@
         <div class="container-fluid">
             <ul class="navbar-nav navbar-menu-primary">
                 <li class="nav-item">
-                    <a href="#navbar-search" class="nav-link" role="button" class="btn-search mr-0" data-toggle="class" data-class="navbar-search-active">
-                        <svg fill="#000000" width="18" height="18" id="lnr-magnifier" viewBox="0 0 1024 1024"><path class="path1" d="M966.070 981.101l-304.302-331.965c68.573-71.754 106.232-165.549 106.232-265.136 0-102.57-39.942-199-112.47-271.53s-168.96-112.47-271.53-112.47-199 39.942-271.53 112.47-112.47 168.96-112.47 271.53 39.942 199.002 112.47 271.53 168.96 112.47 271.53 112.47c88.362 0 172.152-29.667 240.043-84.248l304.285 331.947c5.050 5.507 11.954 8.301 18.878 8.301 6.179 0 12.378-2.226 17.293-6.728 10.421-9.555 11.126-25.749 1.571-36.171zM51.2 384c0-183.506 149.294-332.8 332.8-332.8s332.8 149.294 332.8 332.8-149.294 332.8-332.8 332.8-332.8-149.294-332.8-332.8z"></path></svg>
-                        <!-- <svg fill="#555555" width="24" height="24" viewBox="0 0 32 32"><path d="M 19 3 C 13.488281 3 9 7.488281 9 13 C 9 15.394531 9.839844 17.589844 11.25 19.3125 L 3.28125 27.28125 L 4.71875 28.71875 L 12.6875 20.75 C 14.410156 22.160156 16.605469 23 19 23 C 24.511719 23 29 18.511719 29 13 C 29 7.488281 24.511719 3 19 3 Z M 19 5 C 23.429688 5 27 8.570313 27 13 C 27 17.429688 23.429688 21 19 21 C 14.570313 21 11 17.429688 11 13 C 11 8.570313 14.570313 5 19 5 Z"/></svg> -->
-                    </a>
-                </li>
-                <li class="nav-item dropdown language-dropdown">
-                    <a href="#" class="nav-link dropdown-toggle dropdown-nocaret" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="assets/layouts/flags/us.svg" alt="">
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-sm dropdown-menu-left">
-                        <a href="#" class="dropdown-item">
-                            <img src="assets/layouts/flags/us.svg" alt=""> English
-                        </a>
-                        <a href="#" class="dropdown-item">
-                            <img src="assets/layouts/flags/fr.svg" alt=""> French
-                        </a>
-                        <a href="#" class="dropdown-item">
-                            <img src="assets/layouts/flags/it.svg" alt=""> Italian
-                        </a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown message-nav-item">
-                    <a href="#" class="nav-link dropdown-toggle dropdown-nocaret position-relative" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <svg fill="#555555" width="24" height="24" viewBox="0 0 1024 1024"><path class="path1" d="M896 307.2h-819.2c-42.347 0-76.8 34.453-76.8 76.8v460.8c0 42.349 34.453 76.8 76.8 76.8h819.2c42.349 0 76.8-34.451 76.8-76.8v-460.8c0-42.347-34.451-76.8-76.8-76.8zM896 358.4c1.514 0 2.99 0.158 4.434 0.411l-385.632 257.090c-14.862 9.907-41.938 9.907-56.802 0l-385.634-257.090c1.443-0.253 2.92-0.411 4.434-0.411h819.2zM896 870.4h-819.2c-14.115 0-25.6-11.485-25.6-25.6v-438.566l378.4 252.267c15.925 10.618 36.363 15.925 56.8 15.925s40.877-5.307 56.802-15.925l378.398-252.267v438.566c0 14.115-11.485 25.6-25.6 25.6z"></path></svg>
-                        <!-- <svg fill="#555555" width="22" height="22" viewBox="0 0 1024 1024"><path class="path1" d="M25.6 972.8c-11.507 0-21.6-7.677-24.67-18.766s1.634-22.864 11.501-28.784c86.57-51.942 122.485-127.414 135.218-162.755-94.088-72.048-147.648-171.746-147.648-276.094 0-52.704 13.23-103.755 39.323-151.736 24.902-45.794 60.406-86.806 105.526-121.899 91.504-71.17 212.802-110.365 341.55-110.365s250.046 39.195 341.552 110.366c45.118 35.093 80.624 76.104 105.526 121.899 26.091 47.979 39.322 99.030 39.322 151.734 0 52.702-13.23 103.755-39.322 151.736-24.902 45.794-60.408 86.806-105.526 121.899-91.506 71.17-212.803 110.365-341.552 110.365-52.907 0-104.8-6.627-154.437-19.707-21.974 14.637-63.040 40.605-112.086 65.005-76.163 37.89-141.528 57.102-194.277 57.102zM486.4 153.6c-239.97 0-435.2 149.294-435.2 332.8 0 92.946 51.432 182.379 141.107 245.368 8.797 6.178 12.795 17.194 10.013 27.576-5.984 22.325-26.363 83.597-80.878 142.734 66.659-23.341 138.424-63.832 191.434-100.286 6.296-4.328 14.197-5.621 21.544-3.52 48.558 13.888 99.691 20.928 151.981 20.928 239.97 0 435.2-149.294 435.2-332.8s-195.23-332.8-435.2-332.8z"></path></svg> -->
-                        <!-- <svg fill="#555555" width="24" height="24" viewBox="0 0 32 32"><path d="M 3 8 L 3 26 L 29 26 L 29 8 Z M 7.3125 10 L 24.6875 10 L 16 15.78125 Z M 5 10.875 L 15.4375 17.84375 L 16 18.1875 L 16.5625 17.84375 L 27 10.875 L 27 24 L 5 24 Z"/></svg> -->
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-sm dropdown-menu-left">
-                        <ul class="list-group contact-list-mini contact-list-widget">
-                            <li class="list-group-item">
-                                <div class="user-avatar">
-                                    <img src="assets/avatars/5.jpg" class="avatar avatar-1 rounded-circle" alt="Avatar image">
-                                    <span class="badge badge-success color-badge badge-size-1"></span>
-                                </div>
-                                <div class="list-item-info">
-                                    <a href="#"><h6 class="mb-1">Thea Reichert</h6></a>
-                                    <a href="#" class="message-content">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a>
-                                </div>
-                                <div>
-                                    <div class="timestamp">19:45</div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="user-avatar">
-                                    <img src="assets/avatars/18.jpg" class="avatar avatar-1 rounded-circle" alt="Avatar image">
-                                    <span class="badge badge-secondary color-badge badge-size-1"></span>
-                                </div>
-                                <div class="list-item-info">
-                                    <a href="#"><h6 class="mb-1">Leone Gutkowski</h6></a>
-                                    <a href="#" class="message-content">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a>
-                                </div>
-                                <div>
-                                    <div class="timestamp">19:45</div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="user-avatar">
-                                    <img src="assets/avatars/14.jpg" class="avatar avatar-1 rounded-circle" alt="Avatar image">
-                                    <span class="badge badge-secondary color-badge badge-size-1"></span>
-                                </div>
-                                <div class="list-item-info">
-                                    <a href="#"><h6 class="mb-1">Sterling Robel</h6></a>
-                                    <a href="#" class="message-content">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a>
-                                </div>
-                                <div>
-                                    <div class="timestamp">19:45</div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="user-avatar">
-                                    <img src="assets/avatars/22.jpg" class="avatar avatar-1 rounded-circle" alt="Avatar image">
-                                    <span class="badge badge-secondary color-badge badge-size-1"></span>
-                                </div>
-                                <div class="list-item-info">
-                                    <a href="#"><h6 class="mb-1">Keon Boyer</h6></a>
-                                    <a href="#" class="message-content">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a>
-                                </div>
-                                <div>
-                                    <div class="timestamp">19:45</div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="user-avatar">
-                                    <img src="assets/avatars/6.jpg" class="avatar avatar-1 rounded-circle" alt="Avatar image">
-                                    <span class="badge badge-success color-badge badge-size-1"></span>
-                                </div>
-                                <div class="list-item-info">
-                                    <a href="#"><h6 class="mb-1">Roger Aniston</h6></a>
-                                    <a href="#" class="message-content">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a>
-                                </div>
-                                <div>
-                                    <div class="timestamp">19:45</div>
-                                </div>
-                            </li>
-                            <li class="list-group-item list-group-loader">
-                                <a href="#" class="btn btn-ellipsis-loader">
-                                    <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item dropdown notifications-nav-item">
-                    <a href="#" class="nav-link dropdown-toggle dropdown-nocaret position-relative" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <svg fill="#555555" width="22" height="22" id="lnr-alarm" viewBox="0 0 1024 1024"><path class="path1" d="M860.171 773.15c-58.576-44-92.171-111.194-92.171-184.35v-153.6c0-128.661-86.733-237.442-204.798-270.954l-0.002-36.246c0-42.347-34.451-76.8-76.8-76.8-42.347 0-76.8 34.453-76.8 76.8v36.245c-118.067 33.512-204.8 142.294-204.8 270.955v153.6c0 73.157-33.595 140.349-92.171 184.35-8.808 6.616-12.395 18.125-8.907 28.573 3.486 10.448 13.267 17.496 24.283 17.496h232.982c-1.709 8.384-2.587 16.955-2.587 25.581 0 70.579 57.421 128 128 128s128-57.421 128-128c0-8.626-0.878-17.197-2.584-25.581h232.981c11.016 0 20.795-7.046 24.283-17.496s-0.101-21.957-8.909-28.573zM460.8 128c0-14.115 11.485-25.6 25.6-25.6s25.6 11.485 25.6 25.6v26.774c-8.435-0.763-16.97-1.176-25.6-1.176s-17.166 0.413-25.6 1.176v-26.774zM563.2 844.8c0 42.347-34.453 76.8-76.8 76.8s-76.8-34.453-76.8-76.8c0-8.76 1.515-17.411 4.394-25.581h144.813c2.878 8.168 4.394 16.821 4.394 25.581zM191.571 768.019c13.075-15.826 24.437-33.051 33.744-51.27 20.362-39.858 30.685-82.906 30.685-127.949v-153.6c0-127.043 103.357-230.4 230.4-230.4s230.4 103.357 230.4 230.4v153.6c0 45.043 10.323 88.091 30.685 127.949 9.307 18.219 20.669 35.445 33.744 51.27h-589.658z"></path></svg>
-                        <!-- <svg fill="#555555" width="24" height="24" viewBox="0 0 32 32"><path d="M 16 3 C 14.894531 3 14 3.894531 14 5 C 14 5.085938 14.019531 5.167969 14.03125 5.25 C 10.574219 6.132813 8 9.273438 8 13 L 8 22 C 8 22.566406 7.566406 23 7 23 L 6 23 L 6 25 L 13.1875 25 C 13.074219 25.316406 13 25.648438 13 26 C 13 27.644531 14.355469 29 16 29 C 17.644531 29 19 27.644531 19 26 C 19 25.648438 18.925781 25.316406 18.8125 25 L 26 25 L 26 23 L 25 23 C 24.433594 23 24 22.566406 24 22 L 24 13.28125 C 24 9.523438 21.488281 6.171875 17.96875 5.25 C 17.980469 5.167969 18 5.085938 18 5 C 18 3.894531 17.105469 3 16 3 Z M 15.5625 7 C 15.707031 6.988281 15.851563 7 16 7 C 16.0625 7 16.125 7 16.1875 7 C 19.453125 7.097656 22 9.960938 22 13.28125 L 22 22 C 22 22.351563 22.074219 22.683594 22.1875 23 L 9.8125 23 C 9.925781 22.683594 10 22.351563 10 22 L 10 13 C 10 9.824219 12.445313 7.226563 15.5625 7 Z M 16 25 C 16.5625 25 17 25.4375 17 26 C 17 26.5625 16.5625 27 16 27 C 15.4375 27 15 26.5625 15 26 C 15 25.4375 15.4375 25 16 25 Z"/></svg> -->
-                        <span class="color-badge bg-info position-absolute" style="top: 1.3rem; right: 1rem;"></span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-sm dropdown-menu-left">
-
-                        <div class="notifications-box">
-
-                            <small class="d-block mt-3" style="margin-left: 30px; font-weight: 500; color: #999;">Today</small>
-
-                            <ul class="list-group list-group-notifications-2">
-                                <li class="list-group-item">
-                                    <div class="user-avatar">
-                                        <span class="avatar avatar-1 rounded-circle">KB</span>
-                                        <span class="badge badge-secondary color-badge badge-size-1"></span>
-                                    </div>
-                                    <div class="item-info">
-                                        <p><a href="#">Keon Boyer</a> sent you a new message.</p>
-                                    </div>
-                                    <div class="timestamp">19:45</div>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="user-avatar">
-                                        <span class="avatar avatar-1 rounded-circle">RA</span>
-                                        <span class="badge badge-success color-badge badge-size-1"></span>
-                                    </div>
-                                    <div class="item-info">
-                                        <p><a href="#">Roger Aniston</a> started following you.</p>
-                                    </div>
-                                    <div class="timestamp">19:45</div>
-                                </li>
-
-                            </ul>
-
-                            <small class="d-block mt-3" style="margin-left: 30px; font-weight: 500; color: #999;">Yesterday</small>
-
-                            <ul class="list-group list-group-notifications-2">
-                                <li class="list-group-item">
-                                    <div class="user-avatar">
-                                        <span class="avatar avatar-1 rounded-circle">
-                                            <i class="fas fa-comments"></i>
-                                        </span>
-                                    </div>
-                                    <div class="item-info">
-                                        <a href="#">You have 43 new comments.</a>
-                                    </div>
-                                    <div class="timestamp">19:45</div>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="user-avatar">
-                                        <span class="avatar avatar-1 rounded-circle">LG</span>
-                                        <span class="badge badge-secondary color-badge badge-size-1"></span>
-                                    </div>
-                                    <div class="item-info">
-                                        <p><a href="#">Leone Gutkowski</a> started following you.</p>
-                                    </div>
-                                    <div class="timestamp">19:45</div>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="user-avatar">
-                                        <span class="avatar avatar-1 rounded-circle">SR</span>
-                                        <span class="badge badge-success color-badge badge-size-1"></span>
-                                    </div>
-                                    <div class="item-info">
-                                        <p><a href="#">Sterling Robel</a> sent you a new message.</p>
-                                    </div>
-                                    <div class="timestamp">19:45</div>
-                                </li>
-
-                            </ul>
-
-                            <small class="d-block mt-3" style="margin-left: 30px; font-weight: 500; color: #999;">5 days ago</small>
-
-                            <ul class="list-group list-group-notifications-2">
-                                <li class="list-group-item">
-                                    <div class="user-avatar">
-                                        <span class="avatar avatar-1 rounded-circle">
-                                            <i class="fas fa-shopping-bag"></i>
-                                        </span>
-                                    </div>
-                                    <div class="item-info">
-                                        <a href="#">You have 2 new orders waiting.</a>
-                                    </div>
-                                    <div class="timestamp">19:45</div>
-                                </li>
-                                <li class="list-group-item mt-3 list-group-loader">
-                                    <a href="#" class="btn btn-ellipsis-loader">
-                                        <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
-                                    </a>
-                                </li>
-
-                            </ul>
-
-                        </div>
-
-                    </div>
                 </li>
                 @if(Auth::check())
 
                 <li class="nav-item nav-user-dropdown dropdown">
                     <a href="#" class="nav-link dropdown-toggle dropdown-nocaret" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ auth()->user()->name }}
-                        <img src="../../../assets/avatars/1.jpg" class="avatar avatar-1 rounded-circle" alt="Avatar image">
+                        <img src="{{asset('storage/personal_image/'.auth()->user()->id.'/'.auth()->user()->personal_image)}}" class="avatar avatar-1 rounded-circle" alt="Avatar image">
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('logout') }}"

@@ -5,7 +5,7 @@
         <h1 class="panel-title">Invoice List</h1>
     </div>
     <div class="panel-body">
-        <a href="{{route('facture.create')}}" class="btn btn-success pull-right"><span>ADD NEW INVOICE</span></a>
+        <a href="{{route('facture.create')}}" class="btn btn-info-lightened"><span>Add new invoice</span></a>
         <br>
         <br>
         <div class="row">

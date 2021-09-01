@@ -20,6 +20,48 @@ class ClientsController extends Controller
         $company = Company::where('client_id',$id);
         return view('client.client', compact('clients','company'));
     }
+    public function edtiType($id)
+    {
+
+        $client = Client::findOrFail($id);
+        return view('client.type',compact('client'));
+    }
+
+    public function clientsFilter()
+    {
+        $clients = Client::where('type','=','1')
+        ->get();
+        return view('client.allclients',compact('clients'));
+    }
+    
+    public function prospectsFilter()
+    {
+        $prospects = Client::where('type','=','0')
+        ->get();
+        return view('client.allprospects',compact('prospects'));
+    }
+    public function type(Request $request,$id)
+    {
+        Client::findOrFail($id);
+        $s = $request->input('type');
+        if($s =='Client')
+        {
+            DB::table('clients')
+            ->where('id',$id)
+            ->update(['type'=>1]);
+        }
+        else
+        {
+            DB::table('clients')
+            ->where('id',$id)
+            ->update(['status'=>0]); 
+        }
+        if ($request) {
+            return back()->with('success','client type updated successfuly');
+        }
+        else return back()->with('error','an error has occured');
+
+    }
 
     public function edit(Client $client)
     {

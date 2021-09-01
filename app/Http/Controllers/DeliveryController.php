@@ -21,6 +21,8 @@ class DeliveryController extends Controller
     }
      public function create($id)
       {
+        
+        $products = [];
         $fact = Facture::findOrFail($id);
         $facture = Facture::findOrFail($id)->products()->where('status',0)->get();
         foreach ($facture as $product) {
@@ -35,7 +37,7 @@ class DeliveryController extends Controller
             ];
 
         }
-        return view('delivery.create',compact('facture','products','fact'));    
+         return view('delivery.create',compact('facture','products','fact'));    
     //     $facture = Facture::where('id',$id)->first();
     // //     $facture = Facture::where('id',$id)->first();
     // //     foreach ($facture->products as $product) {
@@ -75,8 +77,8 @@ class DeliveryController extends Controller
                     'product_id' => $product->id,
                     'product_name' => $product->name,
                     'quantity' => $product->pivot->quantity,
-                    'price' => $product->price,
-                    'total_price' => $product->pivot->quantity * $product->price
+                    'price' => $product->pivot->price,
+                    'total_price' => $product->pivot->quantity * $product->pivot->price
 
             ];
 
@@ -94,8 +96,8 @@ class DeliveryController extends Controller
                     'product_id' => $t,
                     'product_name' => $product->name,
                     'quantity' => $product->pivot->quantity,
-                    'price' => $product->prodprice,
-                    'total_price' => $product->pivot->quantity * $product->prodprice
+                    'price' => $product->price,
+                    'total_price' => $product->pivot->quantity * $product->price
 
             ];
 
@@ -146,6 +148,7 @@ class DeliveryController extends Controller
      }
     public function bonDeSortie($id)
     {
+        $user = auth()->user();
         $delivery = Delivery::findOrFail($id);
         $tva =DB::table('factures')
         ->select('tva')
@@ -177,10 +180,32 @@ class DeliveryController extends Controller
         //     $tax = ($subtotal*$tva)/100;
         //     $ttc =$subtotal + $tax;
         // }
-    return view('delivery.sortie',compact('delivery','client','facture','subtotal','tax','ttc'));
+    return view('delivery.sortie',compact('delivery','client','facture','subtotal','tax','ttc','user'));
 
     }
 
+
+    public function edit($id)
+    {
+        $delivery =Delivery::find($id);
+
+        return view('delivery.edit',compact('delivery'));    
+    }
+
+
+    public function update(Request $request)
+    {
+        $t =  $request->input('products');
+        foreach($t as $t)
+        {
+            DB::table('delivery')
+            ->where('products[product_id]',$t)
+            ->delete();
+        }
+
+
+
+    }
     public function show($id) {
         // $facture = Facture::where('id',$id)->first();
         // $delivery = Delivery::where('facutre_id',$id)->first();

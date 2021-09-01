@@ -2,10 +2,11 @@
 @section('content')
 <div class="panel panel-light">
     <div class="panel-header">
-        <h1 class="panel-title">Invoice List</h1>
+        <h1 class="panel-title">Delivery List</h1>
     </div>
     <div class="panel-body">
-        <a href="{{route('facture.create')}}" class="btn btn-success pull-right"><span>ADD NEW INVOICE</span></a>
+        <a href="{{route('facture.create')}}" class="btn btn-info-lightened"><span>Add New Invoice</span></a>
+        <a href="{{route('facture.facture')}}" class="btn btn-info-lightened"><span>Invoice List</span></a>
         <br>
         <br>
         <div class="row">
@@ -43,7 +44,10 @@
                             <td>{{ $delivery->user_id }}</td>
                             <td>
                                 @foreach (json_decode($delivery->products) as $product)
-                                <li>{{ $product->product_id}} - {{ $product->product_name}}</li>
+                                <li>
+                                     {{$product->product_id}} - {{ $product->product_name}}
+                                     <input type="hidden" name="id_prod" value="{{$product->product_id}}">
+                                    </li>
                                 @endforeach
                             </td>
                             <td>{{$delivery->created_at}}</td>
@@ -51,6 +55,23 @@
                             <a href="{{ route('delivery.show',$delivery->id) }}" class="btn-icon btn btn-primary-light" data-toggle="tooltip" title="View">
                                 <svg fill="#5780f7" viewBox="0 0 1024 1024"><path d="M966.070 981.101l-304.302-331.965c68.573-71.754 106.232-165.549 106.232-265.136 0-102.57-39.942-199-112.47-271.53s-168.96-112.47-271.53-112.47-199 39.942-271.53 112.47-112.47 168.96-112.47 271.53 39.942 199.002 112.47 271.53 168.96 112.47 271.53 112.47c88.362 0 172.152-29.667 240.043-84.248l304.285 331.947c5.050 5.507 11.954 8.301 18.878 8.301 6.179 0 12.378-2.226 17.293-6.728 10.421-9.555 11.126-25.749 1.571-36.171zM51.2 384c0-183.506 149.294-332.8 332.8-332.8s332.8 149.294 332.8 332.8-149.294 332.8-332.8 332.8-332.8-149.294-332.8-332.8z"></path></svg>
                               </a>
+                            
+                              <a href="{{ route('delivery.edit',$delivery->id) }}" class="delete-btns btn-icon btn btn-danger-light" data-toggle="tooltip" title="Edit">
+                                <svg fill="#ed3472" viewBox="0 0 1024 1024">
+                                    <path
+                                        d="M793.6 102.4h-179.2v-25.6c0-42.347-34.453-76.8-76.8-76.8h-102.4c-42.347 0-76.8 34.453-76.8 76.8v25.6h-179.2c-42.347 0-76.8 34.453-76.8 76.8v51.2c0 33.373 21.403 61.829 51.2 72.397v644.403c0 42.349 34.453 76.8 76.8 76.8h512c42.349 0 76.8-34.451 76.8-76.8v-644.403c29.797-10.568 51.2-39.024 51.2-72.397v-51.2c0-42.347-34.451-76.8-76.8-76.8zM409.6 76.8c0-14.115 11.485-25.6 25.6-25.6h102.4c14.115 0 25.6 11.485 25.6 25.6v25.6h-153.6v-25.6zM742.4 972.8h-512c-14.115 0-25.6-11.485-25.6-25.6v-640h563.2v640c0 14.115-11.485 25.6-25.6 25.6zM819.2 230.4c0 14.115-11.485 25.6-25.6 25.6h-614.4c-14.115 0-25.6-11.485-25.6-25.6v-51.2c0-14.115 11.485-25.6 25.6-25.6h614.4c14.115 0 25.6 11.485 25.6 25.6v51.2z">
+                                    </path>
+                                    <path class="path2"
+                                        d="M640 358.4c-14.139 0-25.6 11.462-25.6 25.6v512c0 14.139 11.461 25.6 25.6 25.6s25.6-11.461 25.6-25.6v-512c0-14.138-11.461-25.6-25.6-25.6z">
+                                    </path>
+                                    <path class="path3"
+                                        d="M486.4 358.4c-14.138 0-25.6 11.462-25.6 25.6v512c0 14.139 11.462 25.6 25.6 25.6s25.6-11.461 25.6-25.6v-512c0-14.138-11.462-25.6-25.6-25.6z">
+                                    </path>
+                                    <path class="path4"
+                                        d="M332.8 358.4c-14.138 0-25.6 11.462-25.6 25.6v512c0 14.139 11.462 25.6 25.6 25.6s25.6-11.461 25.6-25.6v-512c0-14.138-11.462-25.6-25.6-25.6z">
+                                    </path>
+                                </svg>
+                            </a>
                            
                             </td>
                         </tr>

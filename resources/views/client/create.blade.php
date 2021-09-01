@@ -1,6 +1,5 @@
 @extends('layout.main')
 @section('content')
-
 <form class="needs-validation" method="POST" action="{{route('client.store')}}">
     @csrf
     <!-- Validation -->

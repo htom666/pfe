@@ -95,7 +95,8 @@ class DiscountController extends Controller
      */
     public function show(Discount $discount)
     {
-        //
+        $discount = Discount::all();
+        return view ('discount.show',compact('discount'));
     }
 
     /**
@@ -127,9 +128,13 @@ class DiscountController extends Controller
      * @param  \App\Models\Discount  $discount
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Discount $discount)
+    public function destroy($id)
     {
-        //
+        $delete=Discount::find($id)->delete();
+        if($delete == 1){
+            return back()->with('success','discount deleted successfully');
+
+        }
     }
     // public function payedInvoices() 
 

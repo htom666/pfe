@@ -51,7 +51,7 @@
                                     <td>{{$facture->client_id  }}</td>
                                     <td><form method="POST" {{ route('adddis', $facture->id) }}>
                                         @csrf 
-                                        <input type="text" name="discount" >
+                                        <input type="text" name="discount" style="height:40px" >
                                          <button class="btn-icon btn btn-primary-light" type="submit" name="add">add</button>
                                     </form> 
                                 </td>
@@ -61,7 +61,7 @@
 
                                         <span class="badge rounded-pill bg-danger">Unpaid</span>
                                     @else
-                                    <span class="badge rounded-pill bg-success">Paied</span>  
+                                    <span class="badge rounded-pill bg-success">Paid</span>  
                                     @endif
 
                                 </td>

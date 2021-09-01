@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Facture;
+use App\Models\Estimate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -53,7 +55,57 @@ class ChartController extends Controller
     ->select('discount')
     ->whereMonth('created_at',Carbon::today()->month)
     ->sum('discount');
-    
-    return view('dashboard.index',compact('chart','chart2','chart3','chart4'));
+    // $date = Carbon::now()->subDays(7)->startOfDay();
+    // $chat5 =
+    // DB::table('facture')
+    // ->where('facture.created_at','>=',$date)
+
+    $facture = Facture::select(DB::raw("COUNT(*) as count"))
+    ->whereYear('invoice_date',date('Y'))
+    ->groupBy(DB::raw("Month(invoice_date)"))
+    ->pluck('count');
+    $months =  Facture::select(DB::raw("Month(invoice_date)as month"))
+    ->whereYear('invoice_date',date('Y'))
+    ->groupBy(DB::raw("Month(invoice_date)"))
+    ->pluck('month');
+
+    $datas = array(0,0,0,0,0,0,0,0,0,0,0,0);
+    foreach($months as $index =>$month)
+    {
+        $datas[$month] = $facture[$index];
+    }
+    $active_estimates = DB::table('estimates')
+    ->where('status','=',1)
+    ->count();
+    $inactive_estimates = DB::table('estimates')
+    ->where('status','<>',1)
+    ->count();
+
+    $total_estimates = DB::table('estimates')
+    ->count();
+
+    $amount_estimates = DB::table('estimates')
+    ->where('status','=',1)
+    ->sum('ttc');
+
+    $users = User::all();
+
+    $invoices = Facture::all();
+    foreach($invoices as $invoice){
+        $expiration = Carbon::parse($invoice->expiration_date);
+        $current = Carbon::now();
+        if($expiration)
+        {
+        $days = $expiration->diffInDays($current);
+    }
+
+    }
+    $paidinvoice= DB::table('factures')
+    ->where('rest_to_pay','=','0')
+    ->get();
+    $unpaidinvoice =  DB::table('factures')
+    ->where('rest_to_pay','>','0')
+    ->get();
+    return view('dashboard.index',compact('chart','chart2','chart3','chart4','datas','active_estimates','inactive_estimates','total_estimates','amount_estimates','users','invoices','days'));
     }
 }

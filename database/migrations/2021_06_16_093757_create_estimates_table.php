@@ -18,15 +18,18 @@ class CreateEstimatesTable extends Migration
             $table->string('estimate_number');
             $table->string('company_name');
             $table->string('company_address');
-            $table->string('logo')->nullable();
             $table->string('company_phone');
             $table->date('estimate_date');
+            $table->date('expiration_date');
+            $table->boolean('status')->default(0);
             $table->string('client_id');
             $table->double('tva');
             $table->double('tax');
             $table->double('ttc');
             $table->double('pht');
+            $table->boolean('closed')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

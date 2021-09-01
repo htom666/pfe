@@ -51,6 +51,11 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'company' => ['required', 'string', 'max:255'],
+            'capital' => ['required', 'numeric'],
+            'address' => ['required', 'string','max:255'],
+            'tax_ref_number' => ['required', 'numeric'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
 
@@ -68,12 +73,22 @@ class RegisterController extends Controller
         $user= User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'last_name'=>$data['last_name'],
+            'company'=>$data['company'],
+            'capital'=>$data['capital'],
+            'address'=>$data['address'],
+            'tax_ref_number'=>$data['tax_ref_number'],
             'password' => Hash::make($data['password']),
         ]);
         if (request()->hasFile('logo')) {
             $logo = request()->file('logo')->getClientOriginalName();
-            request()->file('logo')->storeAs('logo',$user->id . '/' . $logo,'');
+            request()->file('logo')->storeAs(('/public/logo'),$user->id . '/' . $logo,'');
             $user->update(['logo'=>$logo]);
+        }
+        if (request()->hasFile('personal_image')) {
+            $personal_image = request()->file('personal_image')->getClientOriginalName();
+            request()->file('personal_image')->storeAs(('/public/personal_image'),$user->id . '/' . $personal_image,'');
+            $user->update(['personal_image'=>$personal_image]);
         }
         return $user;
     }

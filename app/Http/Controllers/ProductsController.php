@@ -14,10 +14,7 @@ class ProductsController extends Controller
     public function index()
     {
         Session::put('page','products');
-        if(Auth::guest())
-        {
-            return redirect()->route('/');
-        }
+     
         $products=Product::all();
         return view('product.product',compact('products'));
     }
@@ -33,12 +30,10 @@ class ProductsController extends Controller
     {
         // $product->update($request->all());
         if($product->update($request->all())){
-            Session::flash('success_message', 'Product is updated successfully');
-            return back();
+            return back()->with('success','Product created successfuly');;
 
         }else{
-            Session::flash('error_message', 'An error has occured');
-            return redirect()->back();
+            return back()->with('error','An error has accured ');
         }
         
     }
@@ -54,34 +49,22 @@ class ProductsController extends Controller
         $product = Product::create( $request->all());
 
     if($product){
-        Session::flash('success_message', 'Product is added successfully');
-        return back();
+        // Session::flash('success', 'Product is added successfully');
+        return back()->with('success','Product created successfuly');
     }else
     {
-        Session::flash('error_message', 'An error has occured');
-        
-        return back();
+        return back()->with('error','An error has accured ');
     }
     }
 
     
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        $delete =$product->delete();
+        $delete=Product::find($id)->delete();
         if($delete == 1){
-            $success = true;
-            $message = 'Product deleted successfully';
+            return back()->with('success','product deleted successfully');
 
         }
-        else
-        {
-            $success = true;
-            $message = 'An error has occured';
-        }
-        return response()->json([
-            'success' =>$success,
-            'message'=>$message,
-        ]);
     }
     public function show(Product $product)
     {

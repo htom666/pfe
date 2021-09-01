@@ -8,6 +8,32 @@
         <div class="panel-body">
             <form method="POST" action="{{ route('facture.store') }}">
                 @csrf
+                @if (Session::has('success'))
+                <div class="alert alert-success alert-dismissible alert-dismissible-2"
+                    data-animation="fadeOut" role="alert">
+                    {{ Session::get('success') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                            <path class="heroicon-ui"
+                                d="M16.24 14.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 0 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12l2.83 2.83z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+             @endif
+             @if (Session::has('error'))
+             <div class="alert alert-error alert-dismissible alert-dismissible-2" data-animation="fadeOut"
+             role="alert">
+             {{ Session::get('error') }}
+             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                     <path class="heroicon-ui"
+                         d="M16.24 14.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 0 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12l2.83 2.83z">
+                     </path>
+                 </svg>
+             </button>
+             </div>
+             @endif
                                <hr class="row brc-default-l1 mx-n1 mb-4" />
 
                             <div class="row">
@@ -34,7 +60,16 @@
                                                     <option value="{{ $client->id }}">{{ $client->nom }}</option>
                                                 @endforeach
                                             </select>
+                                            @error('client_id')
+                                             <div class="error">
+                                             {{ $message }}
+                                            </div>
+                                            @enderror
+                                            <br>
+                                            <br>
+                                            <a href="{{route('client.create')}}" class="link-info"> + Add client</a>
                                         </span>
+                                        
                                     </div>
                                     <div>
                                         <br>
@@ -44,6 +79,11 @@
                                             onchange="getPhone();getAdresse()">
                                             <option disabled selected>Select Company</option>
                                         </select>
+                                        @error('company_name')
+                                        <div class="error">
+                                        {{ $message }}
+                                       </div>
+                                       @enderror
                                         </span>
                                     </div>
                                     <br>
@@ -58,6 +98,11 @@
                                                 </div>
                                                 <input type="text" id="phone" name="company_phone" class="form-control">
                                             </div>
+                                            @error('company_phone')
+                                            <div class="error">
+                                            {{ $message }}
+                                           </div>
+                                           @enderror
                                         </div>
                                         <br>
                                         <div class="form-group">
@@ -69,6 +114,11 @@
                                                 </div>
                                                 <input type="text" id="company_address" name="company_address" class="form-control">
                                             </div>
+                                            @error('company_address')
+                                                <div class="error">
+                                                {{ $message }}
+                                               </div>
+                                               @enderror
                                         </div>
 
                                     </div>
@@ -100,8 +150,13 @@
                                                         ID
                                                     </span>
                                                 </div>
-                                                <input type="text" id="invoice_number"
+                                                <input type="text" value="{{$invoice}}"id="invoice_number"
                                                 name="invoice_number" class="form-control">
+                                                @error('invoice_number')
+                                                <div class="error">
+                                                {{ $message }}
+                                               </div>
+                                               @enderror
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -111,8 +166,13 @@
                                                         Issue Date
                                                     </span>
                                                 </div>
-                                                <input type="text" class="form-control" name="invoice_date" data-toggle="datetime" placeholder="Select a date & time">
+                                                <input type="text"  class="form-control" name="invoice_date" data-toggle="datetime" placeholder="Select a date & time">
                                             </div>
+                                            @error('invoice_date')
+                                            <div class="error">
+                                            {{ $message }}
+                                           </div>
+                                           @enderror
                                         </div>
                                         <div class="form-group">
                                             <div class="input-group">
@@ -121,8 +181,14 @@
                                                        Due Date
                                                     </span>
                                                 </div>
-                                                <input type="text" class="form-control" name="expiration_date" data-toggle="datetime" placeholder="Select a date & time">
+                                                <input type="text"  class="form-control" name="expiration_date" data-toggle="datetime" placeholder="Select a date & time">
+                                               
                                             </div>
+                                            @error('expiration_date')
+                                            <div class="error">
+                                            {{ $message }}
+                                           </div>
+                                           @enderror
                                         </div>
                                         {{-- <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span
                                                 class="text-600 text-90">ID:</span><input type="text" id="invoice_number"
@@ -212,7 +278,7 @@
                                 </div>
                             </div> --}}
                             @livewire('products')
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-info-lightened">Create invoice</button>
             </form>
         </div>
     </div>

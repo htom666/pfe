@@ -27,6 +27,7 @@ class CreateClientsTable extends Migration
                 $table->string('telbureau');
                 $table->string('portable');
                 $table->string('telecopie');
+                $table->boolean('type')->default(0);
                 $table->timestamps();
             });
     }

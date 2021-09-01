@@ -8,6 +8,32 @@
     <div class="panel-body">
         <form method="POST" action="{{ route('estimate.update')}}">
             @csrf
+            @if (Session::has('success'))
+                <div class="alert alert-success alert-dismissible alert-dismissible-2"
+                    data-animation="fadeOut" role="alert">
+                    {{ Session::get('success') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                            <path class="heroicon-ui"
+                                d="M16.24 14.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 0 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12l2.83 2.83z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+             @endif
+             @if (Session::has('error'))
+             <div class="alert alert-error alert-dismissible alert-dismissible-2" data-animation="fadeOut"
+             role="alert">
+             {{ Session::get('error') }}
+             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                     <path class="heroicon-ui"
+                         d="M16.24 14.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 0 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12l2.83 2.83z">
+                     </path>
+                 </svg>
+             </button>
+             </div>
+             @endif
                            <hr class="row brc-default-l1 mx-n1 mb-4" />
                            <input type="hidden" name="id" value="{{$estimate->id}}">
                         <div class="row">
@@ -34,6 +60,11 @@
                                                 <option value="{{ $client->id }}"{{ $client->id == $estimate->client_id ? 'selected':'' }}>{{ $client->nom }}</option>
                                             @endforeach
                                         </select>
+                                        @error('client_id')
+                                        <div class="error">
+                                        {{ $message }}
+                                       </div>
+                                       @enderror
                                     </span>
                                 </div>
                                 <div>
@@ -46,6 +77,11 @@
                                         <option value="{{$estimate->company_name}}"{{$estimate->company_name ==$company->id ? 'selected' :''}}>{{$company->name}}</option>
                                         @endforeach
                                     </select>
+                                    @error('company_name')
+                                    <div class="error">
+                                    {{ $message }}
+                                   </div>
+                                   @enderror
                                     </span>
                                 </div>
                                 <br>
@@ -60,6 +96,11 @@
                                             </div>
                                             <input type="text" id="phone" name="company_phone"  value="{{$estimate->company_phone}}" class="form-control">
                                         </div>
+                                        @error('company_phone')
+                                        <div class="error">
+                                        {{ $message }}
+                                       </div>
+                                       @enderror
                                     </div>
                                     <br>
                                     <div class="form-group">
@@ -71,6 +112,11 @@
                                             </div>
                                             <input type="text" id="company_address" name="company_address"  value="{{$estimate->company_address}}" class="form-control">
                                         </div>
+                                        @error('company_address')
+                                        <div class="error">
+                                        {{ $message }}
+                                       </div>
+                                       @enderror
                                     </div>
 
                                 </div>
@@ -105,6 +151,11 @@
                                             <input type="text" value="{{$estimate->estimate_number}}" id="estimate_number"
                                             name="estimate_number" class="form-control">
                                         </div>
+                                        @error('estimate_number')
+                                        <div class="error">
+                                        {{ $message }}
+                                       </div>
+                                       @enderror
                                     </div>
                                     <div class="form-group">
                                         <div class="input-group">
@@ -115,7 +166,28 @@
                                             </div>
                                             <input type="text" class="form-control" value="{{$estimate->estimate_date}}" name="estimate_date" data-toggle="datetime" placeholder="Select a date & time">
                                         </div>
+                                        @error('estimate_date')
+                                        <div class="error">
+                                        {{ $message }}
+                                       </div>
+                                       @enderror
                                     </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                   Due Date
+                                                </span>
+                                            </div>
+                                            <input type="text" required class="form-control" value="{{$estimate->expiration_date}}" name="expiration_date" data-toggle="datetime" placeholder="Select a date & time">
+                                        </div>
+                                        @error('expiration_date')
+                                        <div class="error">
+                                        {{ $message }}
+                                       </div>
+                                       @enderror
+                                    </div>
+                                    
                                 </div>
                             </div>
                             <!-- /.col -->

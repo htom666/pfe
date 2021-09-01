@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RolesRequest;
 use App\Models\Role;
 use App\Models\Permission;
 use Illuminate\Http\Request;
@@ -17,8 +18,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-       $user=Auth::user();
-       $roles = Role::all();
+       $roles = Role::get();
        return view('roles.index',compact('roles'));
     }
 
@@ -29,8 +29,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        $permissions = Permission::latest()->get();
-        return view('roles.create',compact('permissions'));
+        return view('roles.create');
     }
 
     /**
@@ -39,15 +38,24 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RolesRequest $request)
     {
-        $role = Role::create([
-            'name' => $request->name,
-        ]);
-        foreach($request->permissions as $permission){
-            $role->permissions()->attach($permission);
-        }
-        return back();
+
+             $role = $this->process(new Role,$request);
+            if($role){
+                    return redirect()->route('roles.index')->with('success','role added successfuly');
+            }
+        
+            else
+            return redirect()->route('roles.index')->with('error','an error has accured');
+       
+        // $role = Role::create([
+        //     'name' => $request->name,
+        // ]);
+        // foreach($request->permissions as $permission){
+        //     $role->permissions()->attach($permission);
+        // }
+        // return back();
     }
 
     /**
@@ -70,7 +78,7 @@ class RoleController extends Controller
     public function edit($id)
     {
         $role = Role::find($id);
-        return view('role.edit',compact('role'));
+        return view('roles.edit',compact('role'));
     }
 
     /**
@@ -80,22 +88,35 @@ class RoleController extends Controller
      * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
-    {
-        $role = Role::find($request->id);
-        $role->update([
-            'name'=> $request->name
-        ]);
-        foreach($role->permissions as $permission)
-        {
-            $role->permissions()->attach($permission);
-        }
-        foreach ($request->permissions as $permission)
+    public function update($id,RolesRequest $request)
+     {
+         try
+         {
+             $role = Role::find($id);
+             $role = $this->process($role,$request);
+             if($role)
+             return redirect()->route('roles.index')->with('success', 'role updated successfuly');
+             else
+             return redirect()->route('roles.index')->with('error','an error has accured');
+         }catch (\Exception $exception) {
+             return $exception;
+             return redirect()->route('roles.index')->with('error','an error has accured');
+         }
 
-        {
-            $role->permissions()->attach($permission);
-        }
-        return back();
+    //     $role = Role::find($request->id);
+    //     $role->update([
+    //         'name'=> $request->name
+    //     ]);
+    //     foreach($role->permissions as $permission)
+    //     {
+    //         $role->permissions()->attach($permission);
+    //     }
+    //     foreach ($request->permissions as $permission)
+
+    //     {
+    //         $role->permissions()->attach($permission);
+    //     }
+    //     return back();
     }
 
     /**
@@ -104,25 +125,24 @@ class RoleController extends Controller
      * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        $delete = Role::find($id);
-        foreach ($delete->permissions as $permission) {
-            $delete->permission()->detach($permission->id);
-        }
-
-        $delete=Role::find($id)->delete();
+        $role = Role::find($id);
+        $delete = $role->delete();
         if($delete == 1) {
-            $success = true;
-            $message = 'role deleted';
+            return back()->with('success','role deleted succussfuly');
         }else
         {
-            $success = true;
-            $message = 'no delete';
+          return back()->with('error','an error has occured');
         }
-        return response()->json([
-            'success' => $success,
-            'message' => $message
-        ]);
+    }
+
+
+    protected function process(Role $role , Request $request)
+    {
+        $role->name = $request->name;
+        $role->permissions = json_encode($request->permissions);
+        $role->save();
+        return $role;
     }
 }

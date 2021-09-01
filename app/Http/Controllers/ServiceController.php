@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ServiceRequest;
 use App\Models\Service;
 use Illuminate\Http\Request;
 
@@ -35,10 +36,13 @@ class ServiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ServiceRequest $request)
     {
-        Service::create( $request->all());
-        return back();
+        $service =Service::create( $request->all());
+        if($service){
+            // Session::flash('success', 'Product is added successfully');
+            return back()->with('success','service created successfuly');
+        }
     }
 
     /**
@@ -70,10 +74,13 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Service $service)
+    public function update(ServiceRequest $request, Service $service)
     {
         $service->update($request->all());
-        return redirect()->back();
+        if($service){
+            // Session::flash('success', 'Product is added successfully');
+            return back()->with('success','service created successfuly');
+        }
     }
 
     /**
@@ -82,9 +89,12 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Service $service)
+    public function destroy($id)
     {
-        $service->delete();
-        return back();
+       $service =Service::find($id)->delete();
+       if($service == 1){
+        return back()->with('success','service deleted successfully');
+
+    };
     }
 }

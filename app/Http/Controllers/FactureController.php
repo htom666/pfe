@@ -39,7 +39,7 @@ class FactureController extends Controller
         $company= Company::all();
         return view('facture.edit', compact('facture','client','company'));
     }
-    public function update(Request $request)
+    public function update(FactureRequest $request)
     {   
 
        
@@ -60,6 +60,7 @@ class FactureController extends Controller
         foreach ($facture->services as $service) {
             $facture->services()->detach($service->id);
         }
+        if($request->has('orderProduct')){
         foreach ($request->orderProduct as $product) {
                
             $facture->products()->attach(
@@ -69,6 +70,8 @@ class FactureController extends Controller
                  ]
             );
         }
+    }
+    if($request->has('orderService')){
         foreach ($request->orderService as $service) {
                
             $facture->services()->attach(
@@ -78,17 +81,19 @@ class FactureController extends Controller
                  ]
             );
         }
-
+    }
 
         
-        return back();
+        return back()->with('success','invoice updated successfuly');
     }
     public function create()
     {
         $client = Client::all();
-        return view('facture.create', compact('client'));
+        $facture = Facture::all()->count();
+        $invoice = 'INV' . (str_pad((int)$facture, 4, '0', STR_PAD_LEFT));
+        return view('facture.create', compact('client','invoice'));
     }
-    public function store(Request $request)
+    public function store(FactureRequest $request)
     {
         $services = Service::all();
         // $factur = Facture::all();
@@ -131,12 +136,17 @@ class FactureController extends Controller
 
         }
     }
-        return back();
+        return back()->with('success','invoice created successfuly');
     }
     public function destroy(Facture $facture)
     {
-        $facture->delete();
-        return back();
+        $delete =$facture->delete();
+        if($delete)
+        {
+            return back()->with('success','invoice deleted successfuly');
+        }
+        else
+        return back()-with('error','an error has occured');
     }
     public function show($id)
     {
@@ -148,6 +158,7 @@ class FactureController extends Controller
         return view('facture.show', compact('facture','client','company','user'));
     }
     public function createPDF($id) {
+        $user=auth()->user();
         set_time_limit(0);
         // $data = array();
         // retreive all records from db
@@ -159,15 +170,16 @@ class FactureController extends Controller
         // share data to view
         view()->share('facture',$facture);
 
-        $pdf = PDF::loadView('facture.pdf', $facture);
+        $pdf = PDF::loadView('facture.pdf', $facture,compact('user'));
   
         // download PDF file with download method
+        // $download =$pdf->download('pdf_file.pdf');
          
          return $pdf->download('pdf_file.pdf');
       }
     public function sendmail(Request $request,$id)
     {
-        
+        $user = auth()->user();
         $facture = Facture::findOrFail($id); 
         
         set_time_limit(0);
@@ -181,7 +193,7 @@ class FactureController extends Controller
         // share data to view
         view()->share('facture',$facture);
 
-        $pdf = PDF::loadView('facture.pdf', $facture);
+        $pdf = PDF::loadView('facture.pdf', $facture,compact('user'));
   
         // download PDF file with download method
         file_put_contents('invoice.pdf', $pdf->output());
@@ -208,18 +220,18 @@ class FactureController extends Controller
      $mail->AddAttachment($_SERVER['DOCUMENT_ROOT'].'/invoice.pdf');     //Add attachments
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
-    $mail->Subject = 'Here is the subject';
-    $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+    $mail->Subject = 'SLOTH-LAB';
+    $mail->Body    = "Here’s $facture->invoice_number, from SLOTH-LAB, which is due on $facture->invoice_date. Thanks so much for your business.";
 
     if($mail->send())
     {
         Session::flash('success','sent');
-        return back();
+        return back()->with('success','invoice sent !');
 
     }
     else
     {
-        Session::flash('success','Message has been sent');
+        Session::flash('error','an error has accured');
         return back();
     }
         // $data["email"] = "ficoy90392@nhmty.com";
@@ -237,10 +249,12 @@ class FactureController extends Controller
     }
     public function deletedInvoices()
     {
+        $user = auth()->user();
+        $i = 1;
         $facture = DB::table('factures')
         ->whereNotNull('deleted_at')
         ->get();
-        return view('facture.trash', compact('facture'));
+        return view('facture.trash', compact('facture','i','user'));
 
     }
     public function restoreInvoices($id)

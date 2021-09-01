@@ -16,12 +16,29 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    <!---Added CSS --->
+    <link rel="stylesheet" href="{{asset('css/auth.css')}}">
+
+    <link rel="icon" type="image/png" href="{{asset('assets/favicon.png')}}">
+    <link rel="apple-touch-icon" href="{{asset('assets/apple-touch-icon.png')}}">
+
+    <link rel="stylesheet" href="{{asset('css/vendor.css')}}">
+
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="{{asset('cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css')}}"/>
+
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <!-- Dosis & Poppins Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;523;600;700;800&amp;family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{asset('layouts/layout-1/css/app.css')}}">
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -73,11 +90,14 @@
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav> --}}
 
-        <main class="py-4">
+        <main class="">
             @yield('content')
         </main>
     </div>
 </body>
 </html>
+
+<script src="{{asset('js/vendor.js')}}"></script>
+<script src="{{asset('js/app.js')}}"></script>
