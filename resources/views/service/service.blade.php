@@ -143,7 +143,6 @@
             <div class="modal-dialog modal-dialog-centered modal-confirm confirm-danger">
               <form action="{{ route('service.destroy',$service->id ?? "")}}" method="POST">
                     @csrf
-                    @method('DELETE')
                 <div class="modal-content">
                     <div class="modal-header">
                         <div class="icon-box">

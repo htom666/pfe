@@ -69,7 +69,7 @@ Route::delete('/prod/{id}',[ProductsController::class,'forceDelete'])->name('pro
 
 /*------------------------------ Routes for Services ----------------------*/
 
-Route::get('/service',[ServiceController::class,'index'])->name('service.service');
+Route::get('/services',[ServiceController::class,'index'])->name('service.service');
 
 Route::get('/service/create', [ServiceController::class,'create'])->name('service.create');
 
@@ -79,7 +79,7 @@ Route::get('service/edit/{service}',[ServiceController::class,'edit'])->name('se
 
 Route::put('/service/edit/{service}',[ServiceController::class,'update'])->name('service.update');
 
-Route::delete('/service/{id}',[ServiceController::class,'destroy'])->name('service.destroy');
+Route::post('/service/delete/{id}',[ServiceController::class,'destroy'])->name('service.destroy');
 
 Route::get('/service/{service}', [ServiceController::class,'show'])->name('service.show');
 
@@ -341,7 +341,8 @@ Route::get('/api/v1/price', [AjaxController::class, 'getPrice']);
 /********* Contact Us routes ************/
 Route::get('/contact-form', [ContactController::class, 'contactForm'])->name('contact-form');
 Route::post('/contact-form', [ContactController::class, 'storeContactForm'])->name('contact-form.store');
-
+Route::get('/contact',[ContactController::class,'contact'])->name('contact.contact');
+Route::delete('/contact/{id}',[ContactController::class,'destroy'])->name('contact.destroy');
 // Route::get('/',[ProductsController::class,'index'])->name('product.product');
 
 

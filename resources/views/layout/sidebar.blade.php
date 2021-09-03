@@ -4,25 +4,14 @@
         <img src="../../../assets/cc.png" class="img-sm" alt="">
     </div>
     <ul class="sidebar-menu">
-        <li>
-            {{---Dashbord ---}}
-            {{-- @if(Session::ge('page') == "dashboard")
-            @php
-            $active = "active current";
-            @endphp
-            @else 
-            @php
-             $active = "";   
-            @endphp
-            @endif
-            <li class="{{$active}}"> --}}
+        <li class="nav-item {{Request::is('dashboard') ? 'current active':'';}}">
             <a href="{{ route('dashboard.index')}}">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 6 4 L 6 28 L 26 28 L 26 4 Z M 8 6 L 24 6 L 24 11 L 8 11 Z M 8 13 L 24 13 L 24 19 L 8 19 Z M 8 21 L 24 21 L 24 26 L 8 26 Z"/></svg>
                 <span>Dashboard</span>
             </a>
         </li>
-        <li class="current active">
-            <a href="../../dashboard.html">
+        <li class="">
+            <a href="">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 6 6 L 6 26 L 26 26 L 26 6 Z M 8 8 L 24 8 L 24 24 L 8 24 Z"/></svg>
                 <span>Inventory</span>
                 <i class="chevron">
@@ -31,63 +20,62 @@
             </a>
             <ul class="sidebar-submenu" style="display: block;">
 
-                <li class="current active">
+                <li class="nav-item {{Request::is('products') ? 'current active':'';}}">
                     <a href="{{ route('product.product')}}">
                         Manage Products
                     </a>
                 </li>
-                <li class="current active">
+                <li class="nav-item {{Request::is('services') ? 'current active':'';}}">
                     <a href="{{ route('service.service')}}">
                         Manage Service
                     </a>
                 </li>
             </ul>
         </li>
-
         <li>
-            <a href="#">
+            <a href="">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 8.21875 5 L 8.0625 5.8125 L 7.5625 8.6875 L 7.34375 9.875 L 21.46875 9.875 L 21.15625 11.6875 L 7.03125 11.6875 L 6.875 12.5 L 6.375 15.375 L 6.15625 16.53125 L 20.28125 16.53125 L 19.5625 20.59375 L 14.34375 23 L 10.25 20.75 L 10.46875 19.53125 L 10.6875 18.375 L 5.8125 18.375 L 5.6875 19.1875 L 5 23 L 4.84375 23.75 L 5.53125 24.09375 L 13.34375 27.90625 L 13.75 28.09375 L 14.15625 27.9375 L 23.3125 24.09375 L 23.8125 23.90625 L 23.9375 23.34375 L 27 6.1875 L 27.21875 5 Z M 9.875 7 L 24.8125 7 L 22.0625 22.46875 L 13.78125 25.875 L 7.09375 22.625 L 7.5 20.375 L 8.28125 20.375 L 8.03125 21.8125 L 8.65625 22.15625 L 13.8125 25 L 14.25 25.25 L 14.71875 25.03125 L 20.875 22.1875 L 21.34375 21.96875 L 21.4375 21.4375 L 22.46875 15.71875 L 22.6875 14.53125 L 8.5625 14.53125 L 8.6875 13.6875 L 22.84375 13.6875 L 22.96875 12.84375 L 23.65625 9.03125 L 23.875 7.875 L 9.75 7.875 Z"/></svg>
                 <span>Invoices & Estimates</span>
                 <i class="chevron">
                     <svg fill="#ffffff" viewBox="0 0 1024 1024"><path class="path1" d="M256 1024c-6.552 0-13.102-2.499-18.101-7.499-9.998-9.997-9.998-26.206 0-36.203l442.698-442.698-442.698-442.699c-9.998-9.997-9.998-26.206 0-36.203s26.206-9.998 36.203 0l460.8 460.8c9.998 9.997 9.998 26.206 0 36.203l-460.8 460.8c-5 5-11.55 7.499-18.102 7.499z"></path></svg>
                 </i>
             </a>
-            <ul class="sidebar-submenu">
+            <ul class="sidebar-submenu" style="display:block;">
 
-                <li>
+                <li class="nav-item {{Request::is('facture') ? 'current active':'';}}">
                     <a href="{{ route('facture.facture')}}">
                         Invoice
                     </a>
                 </li>
 
-                <li>
+                <li class="nav-item {{Request::is('estimate') ? 'current active':'';}}">
                     <a href="{{ route('estimate.estimate')}}">
                         Estimates
                     </a>
                 </li>
 
-                <li>
+                <li class="nav-item {{Request::is('facture/payed') ? 'current active':'';}}">
                     <a href="{{route('facture.payed')}}">
                         Payed Invoices
                     </a>
                 </li>
-                <li>
+                <li class="nav-item {{Request::is('facture/unpayed') ? 'current active':'';}}">
                     <a href="{{route('facture.unpayed')}}">
                         Unpaied Invoices
                     </a>
                 </li>
 
-                <li>
+                <li class="nav-item {{Request::is('delivery') ? 'current active':'';}}">
                     <a href="{{route('delivery.all')}}">
                         Deliveries
                     </a>
                 </li>
-                <li>
+                <li class="nav-item {{Request::is('discount') ? 'current active':'';}}">
                     <a href="{{route('discount.show')}}">
                         Discounts
                     </a>
                 </li>
-                <li>
+                <li class="nav-item {{Request::is('process') ? 'current active':'';}}">
                     <a href="{{ route('process.process')}}">
                         Extract data
                     </a>
@@ -104,24 +92,24 @@
                     <svg fill="#ffffff" viewBox="0 0 1024 1024"><path class="path1" d="M256 1024c-6.552 0-13.102-2.499-18.101-7.499-9.998-9.997-9.998-26.206 0-36.203l442.698-442.698-442.698-442.699c-9.998-9.997-9.998-26.206 0-36.203s26.206-9.998 36.203 0l460.8 460.8c9.998 9.997 9.998 26.206 0 36.203l-460.8 460.8c-5 5-11.55 7.499-18.102 7.499z"></path></svg>
                 </i>
             </a>
-            <ul class="sidebar-submenu">
-                <li>
+            <ul class="sidebar-submenu " style="display:block;">
+                <li class="nav-item {{Request::is('facture/trash') ? 'current active':'';}}">
                     <a href="{{route('facture.trash')}}">
                         Deleted Invoices
                     </a>
                 </li>
 
-                <li>
+                <li class="nav-item {{Request::is('estimate/trash') ? 'current active':'';}}">
                     <a href="{{route('estimate.trash')}}">
                         Deleted Estimates
                     </a>
                 </li>
-                <li>
+                <li class="nav-item {{Request::is('prod/trash') ? 'current active':'';}}">
                     <a href="{{route('product.trash')}}">
                         Deleted Products
                     </a>
                 </li>
-                <li>
+                <li class="nav-item {{Request::is('serv/trash') ? 'current active':'';}}">
                     <a href="{{route('service.trash')}}">
                         Deleted Services
                     </a>
@@ -137,15 +125,9 @@
                 </i>
             </a>
             <ul class="sidebar-submenu">
-                <li>
+                <li class="nav-item {{Request::is('company') ? 'current active':'';}}">
                     <a href="{{route('company.company')}}">
                         Company list
-                    </a>
-                </li>
-
-                <li>
-                    <a href="../../ui-elements/alerts.html">
-                        Something to be added
                     </a>
                 </li>
             </ul>
@@ -158,20 +140,20 @@
                     <svg fill="#ffffff" viewBox="0 0 1024 1024"><path class="path1" d="M256 1024c-6.552 0-13.102-2.499-18.101-7.499-9.998-9.997-9.998-26.206 0-36.203l442.698-442.698-442.698-442.699c-9.998-9.997-9.998-26.206 0-36.203s26.206-9.998 36.203 0l460.8 460.8c9.998 9.997 9.998 26.206 0 36.203l-460.8 460.8c-5 5-11.55 7.499-18.102 7.499z"></path></svg>
                 </i>
             </a>
-            <ul class="sidebar-submenu">
+            <ul class="sidebar-submenu"  style="display:block;">
 
-                <li>
+                <li class="nav-item {{Request::is('client') ? 'current active':'';}}">
                     <a href="{{ route('client.client') }}">
                         Customerss</a>
                 </li>
 
-                <li>
+                <li class="nav-item {{Request::is('allclients') ? 'current active':'';}}">
                     <a href="{{ route('client.allclients') }}">
                         Clients
                     </a>
                 </li>
 
-                <li>
+                <li class="nav-item {{Request::is('allprospects') ? 'current active':'';}}">
                     <a href="{{route('client.allprospects')}}">
                        Prospects
                     </a>
@@ -191,9 +173,9 @@
                     <svg fill="#ffffff" viewBox="0 0 1024 1024"><path class="path1" d="M256 1024c-6.552 0-13.102-2.499-18.101-7.499-9.998-9.997-9.998-26.206 0-36.203l442.698-442.698-442.698-442.699c-9.998-9.997-9.998-26.206 0-36.203s26.206-9.998 36.203 0l460.8 460.8c9.998 9.997 9.998 26.206 0 36.203l-460.8 460.8c-5 5-11.55 7.499-18.102 7.499z"></path></svg>
                 </i>
             </a>
-            <ul class="sidebar-submenu">
+            <ul class="sidebar-submenu"  style="display:block;">
 
-               <li>
+               <li class="nav-item {{Request::is('user/profile') ? 'current active':'';}}">
                     <a href="{{route('user.editProfile')}}">
                         Edit Profile                    </a>
                 </li>
@@ -214,9 +196,9 @@
                     <svg fill="#ffffff" viewBox="0 0 1024 1024"><path class="path1" d="M256 1024c-6.552 0-13.102-2.499-18.101-7.499-9.998-9.997-9.998-26.206 0-36.203l442.698-442.698-442.698-442.699c-9.998-9.997-9.998-26.206 0-36.203s26.206-9.998 36.203 0l460.8 460.8c9.998 9.997 9.998 26.206 0 36.203l-460.8 460.8c-5 5-11.55 7.499-18.102 7.499z"></path></svg>
                 </i>
             </a>
-            <ul class="sidebar-submenu">
+            <ul class="sidebar-submenu" style="display:block;">
 
-                <li>
+                <li class="nav-item {{Request::is('user') ? 'current active':'';}}">
                     <a href="{{route('user.user')}}">
                         Users List
                     </a>
@@ -231,8 +213,8 @@
                     <svg fill="#ffffff" viewBox="0 0 1024 1024"><path class="path1" d="M256 1024c-6.552 0-13.102-2.499-18.101-7.499-9.998-9.997-9.998-26.206 0-36.203l442.698-442.698-442.698-442.699c-9.998-9.997-9.998-26.206 0-36.203s26.206-9.998 36.203 0l460.8 460.8c9.998 9.997 9.998 26.206 0 36.203l-460.8 460.8c-5 5-11.55 7.499-18.102 7.499z"></path></svg>
                 </i>
             </a>
-            <ul class="sidebar-submenu">
-                <li>
+            <ul class="sidebar-submenu"  style="display:block;">
+                <li class="nav-item {{Request::is('roles') ? 'current active':'';}}">
                     <a href="{{route('roles.index')}}">
                         Roles
                     </a>
@@ -248,9 +230,9 @@
                     <svg fill="#ffffff" viewBox="0 0 1024 1024"><path class="path1" d="M256 1024c-6.552 0-13.102-2.499-18.101-7.499-9.998-9.997-9.998-26.206 0-36.203l442.698-442.698-442.698-442.699c-9.998-9.997-9.998-26.206 0-36.203s26.206-9.998 36.203 0l460.8 460.8c9.998 9.997 9.998 26.206 0 36.203l-460.8 460.8c-5 5-11.55 7.499-18.102 7.499z"></path></svg>
                 </i>
             </a>
-            <ul class="sidebar-submenu">
+            <ul class="sidebar-submenu"  style="display:block;">
 
-                <li>
+                <li class="nav-item {{Request::is('user/chat') ? 'current active':'';}}">
                     <a href="{{route('user.chat')}}">
                         MailBox
                     </a>
@@ -265,7 +247,7 @@
                     <svg fill="#ffffff" viewBox="0 0 1024 1024"><path class="path1" d="M256 1024c-6.552 0-13.102-2.499-18.101-7.499-9.998-9.997-9.998-26.206 0-36.203l442.698-442.698-442.698-442.699c-9.998-9.997-9.998-26.206 0-36.203s26.206-9.998 36.203 0l460.8 460.8c9.998 9.997 9.998 26.206 0 36.203l-460.8 460.8c-5 5-11.55 7.499-18.102 7.499z"></path></svg>
                 </i>
             </a>
-            <ul class="sidebar-submenu">
+            <ul class="sidebar-submenu"  style="display:block;">
 
                 <li>
                     <a href="{{route('contact-form')}}">
@@ -273,9 +255,9 @@
                     </a>
                 </li>
 
-                <li>
-                    <a href="../../pages/pricing-tables/pricing-table-2.html">
-                        Report Bug
+                <li class="nav-item {{Request::is('contact') ? 'current active':'';}}">
+                    <a href="{{route('contact.contact')}}">
+                        Received messages
                     </a>
                 </li>
             </ul>

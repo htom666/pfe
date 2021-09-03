@@ -21,23 +21,30 @@ class ContactController extends Controller
             'subject' => 'required',
             'message' => 'required',
         ]);
+            $contact =contact::create([
+            'name' => $request->name,
+            'email' =>$request->email,
+            'phone' =>$request->phone,
+            'subject' =>$request->subject,
+            'message' =>$request->message,
 
-        $input = $request->all();
-
-        contact::create($input);
-
-        //  Send mail to admin
-        Mail::send('contact.contactMail', array(
-            'name' => $input['name'],
-            'email' => $input['email'],
-            'phone' => $input['phone'],
-            'subject' => $input['subject'],
-            'message' => $input['message'],
-        ), function($message) use ($request){
-            $message->from($request->email);
-            $message->to('htom1234567891@gmail.com', 'Admin')->subject($request->get('subject'));
-        });
-
-        return redirect()->back()->with(['success' => 'Contact Form Submit Successfully']);
+        ]);
+        if($contact){
+            return back()->with('success','Message sent successfuly');
+        }
+        
+    }
+    public function contact()
+    {
+        $contact = contact::all();
+        return view('contact.contacts',compact('contact'));
+    }
+    public function destroy($id)
+    {
+        $delete = contact::find($id)->delete();
+        if($delete)
+        {
+            return back()->with('success','message deleted successfuly');
+        }
     }
 }
