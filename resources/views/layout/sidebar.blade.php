@@ -4,9 +4,6 @@
         <img src="../../../assets/cc.png" class="img-sm" alt="">
     </div>
     <ul class="sidebar-menu">
-        <li class="header-menu">
-            <span>Inventory</span>
-        </li>
         <li>
             {{---Dashbord ---}}
             {{-- @if(Session::ge('page') == "dashboard")
@@ -22,15 +19,12 @@
             <a href="{{ route('dashboard.index')}}">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 6 4 L 6 28 L 26 28 L 26 4 Z M 8 6 L 24 6 L 24 11 L 8 11 Z M 8 13 L 24 13 L 24 19 L 8 19 Z M 8 21 L 24 21 L 24 26 L 8 26 Z"/></svg>
                 <span>Dashboard</span>
-                <i class="chevron">
-                    <svg fill="#ffffff" viewBox="0 0 1024 1024"><path class="path1" d="M256 1024c-6.552 0-13.102-2.499-18.101-7.499-9.998-9.997-9.998-26.206 0-36.203l442.698-442.698-442.698-442.699c-9.998-9.997-9.998-26.206 0-36.203s26.206-9.998 36.203 0l460.8 460.8c9.998 9.997 9.998 26.206 0 36.203l-460.8 460.8c-5 5-11.55 7.499-18.102 7.499z"></path></svg>
-                </i>
             </a>
         </li>
         <li class="current active">
             <a href="../../dashboard.html">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 6 6 L 6 26 L 26 26 L 26 6 Z M 8 8 L 24 8 L 24 24 L 8 24 Z"/></svg>
-                <span>Products</span>
+                <span>Inventory</span>
                 <i class="chevron">
                     <svg fill="#ffffff" viewBox="0 0 1024 1024"><path class="path1" d="M256 1024c-6.552 0-13.102-2.499-18.101-7.499-9.998-9.997-9.998-26.206 0-36.203l442.698-442.698-442.698-442.699c-9.998-9.997-9.998-26.206 0-36.203s26.206-9.998 36.203 0l460.8 460.8c9.998 9.997 9.998 26.206 0 36.203l-460.8 460.8c-5 5-11.55 7.499-18.102 7.499z"></path></svg>
                 </i>
@@ -39,12 +33,12 @@
 
                 <li class="current active">
                     <a href="{{ route('product.product')}}">
-                        View Products
+                        Manage Products
                     </a>
                 </li>
                 <li class="current active">
                     <a href="{{ route('service.service')}}">
-                        View Service
+                        Manage Service
                     </a>
                 </li>
             </ul>
@@ -118,17 +112,17 @@
                 </li>
 
                 <li>
-                    <a href="../../ui-elements/alerts.html">
+                    <a href="{{route('estimate.trash')}}">
                         Deleted Estimates
                     </a>
                 </li>
                 <li>
-                    <a href="../../ui-elements/alerts.html">
+                    <a href="{{route('product.trash')}}">
                         Deleted Products
                     </a>
                 </li>
                 <li>
-                    <a href="../../ui-elements/alerts.html">
+                    <a href="{{route('service.trash')}}">
                         Deleted Services
                     </a>
                 </li>
@@ -261,18 +255,6 @@
                         MailBox
                     </a>
                 </li>
-
-                <li>
-                    <a href="../../widgets/widgets-2.html">
-                        Unread Emails
-                    </a>
-                </li>
-
-                <li>
-                    <a href="../../widgets/widgets-3.html">
-                        Widgets 3
-                    </a>
-                </li>
             </ul>
         </li>
         <li>
@@ -286,7 +268,7 @@
             <ul class="sidebar-submenu">
 
                 <li>
-                    <a href="../../pages/pricing-tables/pricing-table-1.html">
+                    <a href="{{route('contact-form')}}">
                         Contact Admin
                     </a>
                 </li>

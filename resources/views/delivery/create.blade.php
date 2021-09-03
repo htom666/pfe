@@ -62,7 +62,7 @@
 </div> --}}
 <div class="panel panel-light">
   <div class="panel-header">
-    <h1 class="panel-title">Toggle With Row</h1>
+    <h1 class="panel-title">Make Delivery for invoice {{$fact->invoice_number}}</h1>
   </div>
   <div class="panel-body">
     <div class="row">

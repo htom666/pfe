@@ -14,7 +14,7 @@
                 <div class="panel-header">
                     <h1 class="panel-title">Extracted invoice</h1>
                 </div>
-                <form action="{{route('process.store')}}" method="POST">
+                <form action="{{route('process.store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                 <div class="panel-body">
                     <div class="form-panel">
@@ -55,6 +55,14 @@
                                 <label for="">Products</label>
                                 <input type="text" name="products" class="form-control" value="{{$product}}">
                             </div>
+                            <div class="form-group row mb-4">
+                                <label class="col-md-3 pt-2">Invoice</label>
+                                <div class="col-md-6">
+                                    <div class="custom-file custom-image custom-image-avatar">
+                                        <input type="file" name="invoice" data-placeholder="{{asset('storage/invoice/invoice.png')}}" value="{{asset('storage/invoice/invoice.png')}}" class="custom-image-input" id="customImage">
+                                        <label class="custom-image-label" for="customImage">+</label>
+                                    </div>
+                                </div>
                         </div>
                         <div class="panel-footer">
                             <button type="submit" class="btn btn-primary px-5">Save</button>

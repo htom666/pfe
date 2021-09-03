@@ -72,7 +72,7 @@ class ClientsController extends Controller
         return view('client.edit',compact('client','company'));
     }
 
-    public function update(Request $request,Client $client)
+    public function update(ClientRequest $request,Client $client)
     {
         $id = $client->id;
         $client->update([
@@ -112,7 +112,10 @@ class ClientsController extends Controller
             "bic" => $request->bic,
 
         ]);
-        return back();
+        if($request)
+        {
+            return back()->with('success','client updated successfuly');
+        }
     }
     public function create()
     {
@@ -121,7 +124,7 @@ class ClientsController extends Controller
         
     }
 
-    public function store(Request $request)
+    public function store(ClientRequest $request)
     {
         $client=Client::create([
             "civilite"=>$request->input('civilite'),
@@ -158,7 +161,10 @@ class ClientsController extends Controller
             "bic" => $request->bic,
 
         ]);
-        return redirect()->route('client.client');
+        if($client)
+        {
+            return back()->with('success','client created successfuly');
+        }
     }
     public function destroy(Client $client)
     {
@@ -166,8 +172,10 @@ class ClientsController extends Controller
         DB::table('companies')
         ->where('client_id',$id)
         ->delete();
-        $client->delete();
-        return back();
+        $delete =$client->delete();
+        if($delete){
+            return back()->with('success','Client deleted successfuly');
+        }
     }
     public function show(Client $client)
     {

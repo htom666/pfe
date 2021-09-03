@@ -39,9 +39,9 @@ class CompanyController extends Controller
         return view('company.comcreate',compact('clients'));
     }
 
-    public function storage(Request $request)
+    public function storage(CompanyRequest $request)
     {
-        Company::create([
+        $company=Company::create([
             "client_id"=>$request->client_id,
             "name"=>$request->name,
             "juridikform"=>$request->juridikform,
@@ -61,9 +61,11 @@ class CompanyController extends Controller
             "bic" => $request->bic,
 
         ]);
+        if($company){
         return back()->with('success','Company created successfuly');
     }
-    public function updatage(Request $request,Company $company)
+    }
+    public function updatage(CompanyRequest $request,Company $company)
     {
         $id = $company->id;
         DB::table('companies')
@@ -155,6 +157,9 @@ class CompanyController extends Controller
     public function destroy(Company $company)
     {
         $company->delete();
-        return back();
+        if($company){
+            return back()->with('success','company deleted successfuly');
+        }
+        
     }
 }

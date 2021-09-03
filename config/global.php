@@ -3,7 +3,7 @@
 return [
     'permissions' => [
 
-        'view-products' => 'view products',
+        'view-products' => 'view-products',
         'add-products' => 'add products',
         'edit-products' => 'edit products',
         'delete-products' => 'delete products',

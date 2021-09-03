@@ -15,10 +15,12 @@ class EstimateService extends Migration
     {
         
         Schema::create('estimate_service', function (Blueprint $table) {
-            $table->integer('estimate_id');
-            $table->integer('service_id');
+            $table->integer('estimate_id')->unsigned();
+            $table->integer('service_id')->unsigned();
             $table->double('price');
             $table->integer('quantity');
+            $table->foreign('estimate_id')->references('id')->on('estimates')->onDelete('cascade');
+            $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
             $table->timestamps();
           
         });

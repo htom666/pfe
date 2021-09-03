@@ -21,7 +21,9 @@ class CreateExtractedsTable extends Migration
             $table->string('dest');
             $table->string('amout');
             $table->string('product');
+            $table->string('invoice')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

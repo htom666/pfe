@@ -15,11 +15,13 @@ class FactureProduct extends Migration
     public function up()
     {
         Schema::create('facture_products', function (Blueprint $table) {
-            $table->integer('facture_id');
-            $table->integer('product_id');
+            $table->integer('facture_id')->unsigned();
+            $table->integer('product_id')->unsigned();
             $table->double('price');
             $table->integer('quantity');
             $table->integer('status')->default(0);
+            $table->foreign('facture_id')->references('id')->on('factures')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();
           
         });

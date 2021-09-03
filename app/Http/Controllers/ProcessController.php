@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Extracted;
 use App\Models\ExtractedInvoice;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\Process\Process;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\Process\Exception\ProcessFailedException;
@@ -39,25 +40,24 @@ class ProcessController extends Controller
         $invoice->amout = $request->amount;
         $invoice->product = $request->products;
         $invoice->save();
-       return back();
+        if($request){
+            return back()->with('success','extracted invoice updated successfuly');
+        }
     }
 
 
     public function destroy($id)
     {
+        $extracted=Extracted::find($id)->delete();
+        if($extracted){
+            return back()->with('success','product deleted successfully');
 
+        }
     }
-    // {
-    //     $delete =Extracted::find($id)->delete();
-    //     if($delete == 1){
-    //         return back()->with('success','product deleted successfully');
-
-    //     }
-    //     return back();
-    // }
 
     public function uploadfile(Request $request)
     {
+        $user = Auth::user();
         $file = $request->file('invoice');
             //    $img = Storage::putFileAs('/public/storage/invoice',$request->invoice,'invoice.png');
          $img = $file->storeAs('public/invoice','invoice.png');
@@ -141,10 +141,12 @@ class ProcessController extends Controller
             "dest" =>$request->dest,
             "amout"=>$request->amount,
             "product" =>$request->products,
-            
-
         ]);
-        $extracted->save();
+            if (request()->hasFile('invoice')) {
+                $invoice = request()->file('invoice')->getClientOriginalName();
+                request()->file('invoice')->storeAs(('/public/invoices'),$extracted->id. '/' . $invoice,'');
+                $extracted->update(['invoice'=>$invoice]);
+            }
         if($extracted){
             // Session::flash('success', 'Product is added successfully');
             return redirect('process')->with('success','Invoice created successfuly');

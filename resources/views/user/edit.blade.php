@@ -53,7 +53,7 @@
                                             </div>
 
                                             <span
-                                                class="badge badge-pill badge-outline-info align-top">{{ $user->roles->name }}</span>
+                                                class="badge badge-pill badge-outline-info align-top">{{ $user->roles->name ?? "" }}</span>
 
                                         </div>
 
@@ -166,12 +166,12 @@
 
                                             <div class="form-group">
                                                 <label for="">Address</label>
-                                                <textarea class="form-control" name="address" value="{{ $user->address }}"
-                                                    placeholder="Enter last name here..."></textarea>
+                                                    <input type="text" class="form-control" name="capital"
+                                                    value="{{ $user->address }}" placeholder="Enter last name here...">
                                             </div>
 
                                             <div class="form-group text-right">
-                                                <button class="btn btn-wide btn-primary">Save</button>
+                                                <button class="btn btn-info-lightened">Update profile</button>
                                             </div>
 
                                         </div>

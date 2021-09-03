@@ -17,7 +17,7 @@
             </button>
         </div>
     @endif
-        <a href="{{route('facture.create')}}" class="btn btn-info-lightened"><span>Add New Invoice</span></a>
+        <a href="{{route('estimate.create')}}" class="btn btn-info-lightened"><span>Add New Estimate</span></a>
         <br>
         <br>
         <div class="row">
@@ -51,22 +51,22 @@
                     </thead>
                     <tbody>
                         
-                            @foreach ($factures as $facture)
+                            @foreach ($estimates as $estimate)
                             <tr>
                             <td>{{$i++}}</td>
-                            <td>{{ $facture->invoice_number }}</td>
-                            <td>{{ $facture->company_name }}</td>
-                            <td>{{ $facture->company_address }}</td>
-                            <td>{{ $facture->invoice_date }}</td>
-                            <td>{{ $facture->expiration_date }}</td>
+                            <td>{{ $estimate->estimate_number }}</td>
+                            <td>{{ $estimate->company_name }}</td>
+                            <td>{{ $estimate->company_address }}</td>
+                            <td>{{ $estimate->estimate_date }}</td>
+                            <td>{{ $estimate->expiration_date }}</td>
                             <td>{{$user->name}}</td>
                                   <td class="operations operations-buttons">
-                                    <form action="{{ route('facture.forcedelete', $facture->id) }}" method="POST">
+                                    <form action="{{ route('estimate.forcedelete', $estimate->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                         {{-- <a href="{{ route('client.show',$company->id) }}" class="btn btn-sm btn-primary-light">View</a> --}}
-                                        <a href="{{ route('facture.restore', $facture->id) }}"  class="btn btn-sm btn-info-light">Restore</a>
-                                        <button type="submit"  data-toggle="modal" data-target="#confirm-modal"  class="btn btn-sm btn-danger-light">Delete</button>
+                                        <a href="{{ route('estimate.restore', $estimate->id) }}"  class="btn btn-sm btn-info-light">Restore</a>
+                                        <button type="submit" data-toggle="modal" data-target="#confirm-modal" class="btn btn-sm btn-danger-light">Delete</button>
                                         </form>
                                     </td>
                         </tr>
@@ -81,7 +81,7 @@
 <div class="modal fade" tabindex="-1" role="dialog" id="confirm-modal">
             
     <div class="modal-dialog modal-dialog-centered modal-confirm confirm-danger">
-        <form action="{{ route('facture.forcedelete', $facture->id ?? "") }}" method="POST">
+        <form action="{{ route('estimate.forcedelete', $estimate->id ?? "") }}" method="POST">
             @csrf
             @method('DELETE')
         <div class="modal-content">

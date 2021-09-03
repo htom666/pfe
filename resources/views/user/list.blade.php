@@ -44,7 +44,7 @@
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->created_at }}</td>
-                            <td><a class="badge badge-info">{{ $user->roles->name }}</a></td>
+                            <td><a class="badge badge-info">{{ $user->roles->name ?? ""}}</a></td>
                                     <td class="operations operations-buttons">
                                         <form action="{{ route('user.destroy', $user->id) }}" method="POST">
                                                 @csrf

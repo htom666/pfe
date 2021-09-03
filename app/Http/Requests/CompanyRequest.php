@@ -25,30 +25,45 @@ class CompanyRequest extends FormRequest
     public function rules()
     {
         return [
-            'nomsociete' => 'required',
-            'type' => 'required',
-            'formjuridique' => 'required',
+            'client_id' => 'required',
+            'name' => 'required',
+            'juridikform' => 'required',
             'siret' => 'required',
             'apenaf' => 'required',
-            'tvaintracommunautaire' => 'required',
-            'numimmatriculation' => 'required',
-            'telephonesocite' => 'required',
-            'portablesociete' => 'required',
+            'tvaintra' => 'required',
+            'immatricule' => 'required',
+            'phone' => 'required',
             'fax' => 'required',
-            'siteweb' => 'required',
             'adresse' => 'required',
-            'adresse2' => 'required',
-            'codepostal' => 'required',
-            'formjuridique' => 'required',
-            'ville' => 'required',
-            'pays' => 'required',
-            'banque' => 'required',
+            'company_city' => 'required',
+            'company_state' => 'required',
+            'company_zip' => 'required',
+            'bank_name' => 'required',
             'rib' => 'required',
             'iban' => 'required',
             'bic' => 'required',
-            'montantgaranti' => 'required',
-            'modesaisieprix' => 'required',
-            'commentaire' => 'required',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'client_id.required' => 'this field should not be emptry',
+            'name.required' => 'this field should not be emptry',
+            'juridikform.required' => 'this field should not be emptry',
+            'siret.required' => 'this field should not be emptry',
+            'apenaf.required' => 'this field should not be emptry',
+            'tvaintra.required' => 'this field should not be emptry',
+            'immatricule.required' => 'this field should not be emptry',
+            'phone.required' => 'this field should not be emptry',
+            'fax.required' => 'this field should not be emptry',
+            'adresse.required' => 'this field should not be emptry',
+            'company_city.required' => 'this field should not be emptry',
+            'company_state.required' => 'this field should not be emptry',
+            'company_zip.required' => 'this field should not be emptry',
+            'bank_name.required' => 'this field should not be emptry',
+            'rib.required' => 'this field should not be emptry',
+            'iban.required' => 'this field should not be emptry',
+            'bic.required' => 'this field should not be emptry'
         ];
     }
 }

@@ -14,12 +14,13 @@ class FactureService extends Migration
     public function up()
     {
         Schema::create('facture_service', function (Blueprint $table) {
-            $table->integer('facture_id');
-            $table->integer('service_id');
+            $table->integer('facture_id')->unsigned();
+            $table->integer('service_id')->unsigned();
             $table->double('price');
             $table->integer('quantity');
+            $table->foreign('facture_id')->references('id')->on('factures')->onDelete('cascade');
+            $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
             $table->timestamps();
-          
         });
     }
 

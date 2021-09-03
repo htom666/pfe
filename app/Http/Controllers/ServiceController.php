@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ServiceRequest;
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests\ServiceRequest;
 
 class ServiceController extends Controller
 {
@@ -16,8 +17,8 @@ class ServiceController extends Controller
     public function index()
     {
         
-        $service=Service::all();
-        return view('service.service',compact('service'));
+        $services=Service::all();
+        return view('service.service',compact('services'));
     }
 
     /**
@@ -95,6 +96,35 @@ class ServiceController extends Controller
        if($service == 1){
         return back()->with('success','service deleted successfully');
 
-    };
+    }
+    }
+    public function deletedservice()
+    {
+        $user = auth()->user();
+        $i = 1;
+        $services = DB::table('services')
+        ->whereNotNull('deleted_at')
+        ->get();
+        return view('service.trash', compact('services','i','user'));
+
+    }
+    public function restoreservice($id)
+    {
+        $service = Service::withTrashed()->find($id);
+                $service->restore();
+                if($service)
+                {
+                    return back()->with('success','service restored successfuly');
+                }
+        return redirect()->route('service.service');
+    }
+
+    public function forceDelete($id)
+    {
+        $service = Service::where('id',$id)->forceDelete();
+        if($service)
+        {
+            return back()->with('success','service permanently deleted');
+        }
     }
 }

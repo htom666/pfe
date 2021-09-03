@@ -2,7 +2,7 @@
 @section('content')
 <div class="panel panel-light">
     <div class="panel-header">
-        <h1 class="panel-title">Invoice List</h1>
+        <h1 class="panel-title">Unpaid Invoice List</h1>
     </div>
     <div class="panel-body">
         <a href="{{route('facture.create')}}" class="btn btn-info-lightened"><span>Add new invoice</span></a>

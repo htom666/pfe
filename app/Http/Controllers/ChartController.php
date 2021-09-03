@@ -12,6 +12,7 @@ use ArielMejiaDev\LarapexCharts\LarapexChart;
 
 class ChartController extends Controller
 {
+    public $days;
     public function index()
     {
         $chart = (new LarapexChart)->pieChart()
@@ -96,9 +97,8 @@ class ChartController extends Controller
         $current = Carbon::now();
         if($expiration)
         {
-        $days = $expiration->diffInDays($current);
-    }
-
+        $days = $current->diffInDays($expiration);
+        }  
     }
     $paidinvoice= DB::table('factures')
     ->where('rest_to_pay','=','0')

@@ -15,7 +15,7 @@ class CreateCompanyTable extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
-            $table->integer('client_id');
+            $table->integer('client_id')->unsigned();
             $table->string('name');
             $table->string('juridikform');
             $table->string('siret');
@@ -32,6 +32,7 @@ class CreateCompanyTable extends Migration
             $table->string('rib');
             $table->string('iban');
             $table->string('bic');
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->timestamps();
         });
     }

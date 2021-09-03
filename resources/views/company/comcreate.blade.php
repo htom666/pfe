@@ -8,6 +8,18 @@
         <h1 class="panel-title">Company</h1>
     </div>
     <div class="panel-body">
+        @if (Session::has('success'))
+            <div class="alert alert-success-light alert-dismissible" data-animation="fadeOutUp" role="alert">
+                {{ Session::get('success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                        <path class="heroicon-ui"
+                            d="M16.24 14.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 0 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12l2.83 2.83z">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+        @endif
         <div class="row">
             <div class="col-md-4 mb-3">
                 <label for="validationCustom01">Client Name</label>
@@ -19,80 +31,134 @@
                  <option value="{{ $client->id }}">{{ $client->nom }}</option>
                  @endforeach
             </select>
-          
+            @error('client_id')
+            <div class="error">
+                {{ $message }}
+            </div>
+            @enderror
             </div>
             <div class="col-md-12 my-2">
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label for="validationCustom01">Company Name</label>
                         <input type="text" name="name" class="form-control" id="validationCustom01"
-                            placeholder="company name here ..." required>
+                            placeholder="company name here ..." >
+                            @error('name')
+                            <div class="error">
+                                {{ $message }}
+                            </div>
+                            @enderror
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="validationCustom02">Juridic Form</label>
                         <input type="text" name="juridikform" class="form-control" id="validationCustom02"
-                            placeholder="juridic form here ..." required>
+                            placeholder="juridic form here ..." >
+                            @error('juridikform')
+                            <div class="error">
+                                {{ $message }}
+                            </div>
+                            @enderror
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
                         <label for="validationCustom03">SIRET</label>
                         <input type="text" name="siret" class="form-control" id="validationCustom03" placeholder="siret here ..."
-                            required>
+                            >
+                            @error('siret')
+                            <div class="error">
+                                {{ $message }}
+                            </div>
+                            @enderror
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationCustom04">APE/NAF</label>
                         <input type="text" name="apenaf" class="form-control" id="validationCustom04"
-                            placeholder="APE/NAF here..." required>
+                            placeholder="APE/NAF here..." >
+                            @error('apenaf')
+                            <div class="error">
+                                {{ $message }}
+                            </div>
+                            @enderror
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationCustom05">TVA Intra</label>
                         <input type="text" name="tvaintra" class="form-control" id="validationCustom05"
-                            placeholder="TVA here..." required>
+                            placeholder="TVA here..." >
+                            @error('tvaintra')
+                            <div class="error">
+                                {{ $message }}
+                            </div>
+                            @enderror
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="validationCustom02">Immatriculation</label>
                         <input type="text" name="immatricule" class="form-control" id="validationCustom02"
-                            placeholder="Immatriculation here..." required>
+                            placeholder="Immatriculation here..." >
+                            @error('immatricule')
+                            <div class="error">
+                                {{ $message }}
+                            </div>
+                            @enderror
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="">Company Phone</label>
                         <input type="tel" name="phone" class="form-control" placeholder="Enter phone here..."
-                            required>
+                            >
+                            @error('phone')
+                            <div class="error">
+                                {{ $message }}
+                            </div>
+                            @enderror
                     </div>
                     <div class="col-md-6 mb-3">
                       <label for="">Company FAX</label>
-                      <input type="tel" name="fax" class="form-control" placeholder="Enter fax here..."
-                          required>
+                      <input type="tel" name="fax" class="form-control" placeholder="Enter fax here...">
+                          @error('fax')
+                          <div class="error">
+                              {{ $message }}
+                          </div>
+                          @enderror
                   </div>
                   <div class="col-md-6 mb-3">
                     <label for="">Company Address</label>
                     <input type="text" name="adresse" class="form-control" placeholder="Enter address here..."
-                        required>
+                        >
+                        @error('adresse')
+                        <div class="error">
+                            {{ $message }}
+                        </div>
+                        @enderror
                 </div>
                     <div class="col-md-6 mb-3">
                         <label for="validationCustom03">City</label>
                         <input type="text" name="company_city" class="form-control" id="validationCustom03" placeholder="City"
-                            required>
-                        <div class="invalid-feedback">
-                            Please provide a valid city.
-                        </div>
+                            >
+                            @error('company_city')
+                            <div class="error">
+                                {{ $message }}
+                            </div>
+                            @enderror
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationCustom04">State</label>
                         <input type="text" name="company_state" class="form-control" id="validationCustom04" placeholder="State"
-                            required>
-                        <div class="invalid-feedback">
-                            Please provide a valid state.
-                        </div>
+                            >
+                            @error('company_state')
+                            <div class="error">
+                                {{ $message }}
+                            </div>
+                            @enderror
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationCustom05">Zip</label>
                         <input type="text" name="company_zip" class="form-control" id="validationCustom05"
-                            placeholder="Zip" required>
-                        <div class="invalid-feedback">
-                            Please provide a valid zip.
-                        </div>
+                            placeholder="Zip" >
+                            @error('company_zip')
+                            <div class="error">
+                                {{ $message }}
+                            </div>
+                            @enderror
                     </div>
                 </div>
             </div>
@@ -110,34 +176,42 @@
                         <div class="col-md-4 mb-3">
                             <label for="validationCustom01">Bank</label>
                             <input type="text" name="bank_name" class="form-control" id="validationCustom01"
-                                placeholder="Enter bank name here..." required>
-                            <div class="valid-feedback">
-                                Looks good!
-                            </div>
+                                placeholder="Enter bank name here..." >
+                                @error('bank_name')
+                                <div class="error">
+                                    {{ $message }}
+                                </div>
+                                @enderror
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="validationCustom02">Rib</label>
                             <input type="text" name="rib" class="form-control" id="validationCustom02"
-                                placeholder="Enter rib here..." required>
-                            <div class="valid-feedback">
-                                Looks good!
-                            </div>
+                                placeholder="Enter rib here..." >
+                                @error('rib')
+                                <div class="error">
+                                    {{ $message }}
+                                </div>
+                                @enderror
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
                             <label for="validationCustom03">Iban</label>
-                            <input type="text" name="iban" class="form-control" id="validationCustom03" placeholder="Enter iban here..." required>
-                            <div class="invalid-feedback">
-                                Please provide a valid city.
+                            <input type="text" name="iban" class="form-control" id="validationCustom03" placeholder="Enter iban here...">
+                            @error('iban')
+                            <div class="error">
+                                {{ $message }}
                             </div>
+                            @enderror
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationCustom04">BIC</label>
-                            <input type="text" name="bic" class="form-control" id="validationCustom04" placeholder="Enter bic here..." required>
-                            <div class="invalid-feedback">
-                                Please provide a valid state.
+                            <input type="text" name="bic" class="form-control" id="validationCustom04" placeholder="Enter bic here...">
+                            @error('bic')
+                            <div class="error">
+                                {{ $message }}
                             </div>
+                            @enderror
                         </div>
                     </div>
     

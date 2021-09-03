@@ -72,7 +72,7 @@
                         <h3 class="panel-title">Invoices</h3>
                         <div class="panel-toolbar">
                             <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                                <button type="button" class="btn btn-sm btn-success-lightened">ADD</button>
+                                <a type="button" href="{{route('facture.create')}}" class="btn btn-sm btn-success-lightened">ADD</a>
                             </div>
                         </div>
                     </div>
@@ -100,12 +100,12 @@
                                         <p class="time"><i class="far fa-clock"></i> {{$invoice->expiration_date}}</p>
                                     </td>
 									<td>
-										@if($days >= 10)
+                                        @if($days==0)
+                                        <span class="m-1 badge badge-danger-light">Expired</span>
+										@elseif($days >= 10)
 										<span class="m-1 badge badge-success-light">{{$days}} days left till expiration</span>
 										@elseif($days<=10)
 										<span class="m-1 badge badge-warning-light">{{$days}} days left till expiration</span>
-										@else
-										<span class="m-1 badge badge-danger-light">Expired</span>
 										@endif
 
 									</td>
@@ -306,7 +306,7 @@
 						<div class="item-info">
 							<a href="#">{{$user->name}}</a>
 							<p class="item-description">
-								{{$user->roles->name}}
+								{{$user->roles->name ?? ''}}
 							</p>
 							<div class="timestamp">{{$user->last_activity}}</div>
 						</div>

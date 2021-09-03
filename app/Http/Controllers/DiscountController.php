@@ -68,8 +68,12 @@ class DiscountController extends Controller
         }
         $d = Discount::where('facture_id',$id)->latest()->first();
         // $dt = Discount::where('facture_id',$facture->id);
+        if($dis)
+        {
+            return view('discount.discount' , compact('facture','d'))->with('success','Discount made successfuly'); 
+        }
         
-        return view('discount.discount' , compact('facture','d'));
+
         }
 
     /**

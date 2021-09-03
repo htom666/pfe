@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
-     use SoftDeletes;
+    use SoftDeletes;
     use HasFactory;
     protected $guarded = [];
     protected $dates = ['deleted_at'];

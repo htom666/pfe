@@ -2,22 +2,18 @@
 @section('content')
 <div class="panel panel-light">
     <div class="panel-header">
-        <h1 class="panel-title">Invoice List</h1>
+        <h1 class="panel-title">Deleted Services</h1>
     </div>
     <div class="panel-body">
         @if (Session::has('success'))
-        <div class="alert alert-success-light alert-dismissible" data-animation="fadeOutUp" role="alert">
-            {{ Session::get('success') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                    <path class="heroicon-ui"
-                        d="M16.24 14.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 0 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12l2.83 2.83z">
-                    </path>
-                </svg>
-            </button>
-        </div>
-    @endif
-        <a href="{{route('facture.create')}}" class="btn btn-info-lightened"><span>Add New Invoice</span></a>
+                <div class="alert alert-success-light alert-dismissible" data-animation="fadeOutUp" role="alert">
+                    {{ Session::get('success') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path class="heroicon-ui" d="M16.24 14.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 0 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12l2.83 2.83z"></path></svg>
+                    </button>
+                </div>
+                @endif
+        <a href="{{route('service.create')}}" class="btn btn-info-lightened"><span>Add new Service</span></a>
         <br>
         <br>
         <div class="row">
@@ -28,11 +24,8 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Number</th>
-                            <th>Company</th>
-                            <th>Address</th>
-                            <th>Issue Date</th>
-                            <th>Due Date</th>
+                            <th>Name</th>
+                            <th>Price</th>
                             <th>User</th>
                             <th>Action</th>
                         </tr>
@@ -40,33 +33,25 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Number</th>
-                            <th>Company</th>
-                            <th>Address</th>
-                            <th>Issue Date</th>
-                            <th>Due Date</th>
+                            <th>Name</th>
+                            <th>Price</th>
                             <th>User</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         
-                            @foreach ($factures as $facture)
+                            @foreach ($services as $service)
                             <tr>
                             <td>{{$i++}}</td>
-                            <td>{{ $facture->invoice_number }}</td>
-                            <td>{{ $facture->company_name }}</td>
-                            <td>{{ $facture->company_address }}</td>
-                            <td>{{ $facture->invoice_date }}</td>
-                            <td>{{ $facture->expiration_date }}</td>
+                            <td>{{ $service->name }}</td>
+                            <td>{{ $service->price }}</td>
                             <td>{{$user->name}}</td>
+
                                   <td class="operations operations-buttons">
-                                    <form action="{{ route('facture.forcedelete', $facture->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
                                         {{-- <a href="{{ route('client.show',$company->id) }}" class="btn btn-sm btn-primary-light">View</a> --}}
-                                        <a href="{{ route('facture.restore', $facture->id) }}"  class="btn btn-sm btn-info-light">Restore</a>
-                                        <button type="submit"  data-toggle="modal" data-target="#confirm-modal"  class="btn btn-sm btn-danger-light">Delete</button>
+                                        <a href="{{ route('service.restore', $service->id) }}"  class="btn btn-sm btn-info-light">Restore</a>
+                                        <button type="submit" data-toggle="modal" data-target="#confirm-modal" class="btn btn-sm btn-danger-light">Delete</button>
                                         </form>
                                     </td>
                         </tr>
@@ -81,7 +66,7 @@
 <div class="modal fade" tabindex="-1" role="dialog" id="confirm-modal">
             
     <div class="modal-dialog modal-dialog-centered modal-confirm confirm-danger">
-        <form action="{{ route('facture.forcedelete', $facture->id ?? "") }}" method="POST">
+        <form action="{{ route('service.forcedelete', $service->id ?? "") }}" method="POST">
             @csrf
             @method('DELETE')
         <div class="modal-content">

@@ -5,6 +5,18 @@
         <h1 class="panel-title">Invoice List</h1>
     </div>
     <div class="panel-body">
+        @if (Session::has('success'))
+                <div class="alert alert-success-light alert-dismissible" data-animation="fadeOutUp" role="alert">
+                    {{ Session::get('success') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                            <path class="heroicon-ui"
+                                d="M16.24 14.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 0 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12l2.83 2.83z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+            @endif
         <a href="{{route('facture.create')}}" class="btn btn-info-lightened"><span>Add New Invoice</span></a>
         <br>
         <br>
@@ -43,7 +55,7 @@
                             <tr>
                             <td>{{$i++}}</td>
                             <td>{{ $facture->invoice_number }}</td>
-                            <td>{{ $facture->company_name }}</td>
+                            <td>{{ $facture->company_name}}</td>
                             <td>{{ $facture->company_address }}</td>
                             <td>{{ $facture->invoice_date }}</td>
                             <td>{{ $facture->expiration_date }}</td>
@@ -85,9 +97,6 @@
                                   </td> --}}
                                   <td>
                                 <div class="dropdown">
-                                    <form action="{{ route('facture.destroy', $facture->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
                                     <button class="btn btn-light  dropdown-toggle dropdown-nocaret" type="button" id="dropdownMenuButtonDefault" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Actions&nbsp;&nbsp;&nbsp;<i class="fas fa-caret-down"></i>
                                     </button>
@@ -118,7 +127,7 @@
                                               </svg>   
                                             <span>Make delivery</span>
                                         </a>
-                                        <button type="submit"  class="dropdown-item">
+                                        <button type="submit"  class="dropdown-item"  data-toggle="modal" data-target="#confirm-modal">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                                 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
                                                 <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
@@ -130,6 +139,34 @@
                                 </form>
                             </td>
                         </tr>
+                        <div class="modal fade" tabindex="-1" role="dialog" id="confirm-modal">
+            
+                            <div class="modal-dialog modal-dialog-centered modal-confirm confirm-danger">
+                                <form action="{{ route('facture.destroy', $facture->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <div class="icon-box">
+                                            <i class="fa fa-times"></i>
+                                        </div>
+                                        <h4 class="modal-title">Are you sure?</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p class="text-center">Do you really want to delete this item? This process cannot be undone.</p>
+                                    </div>
+                                    <div class="modal-footer row">
+                                        <div class="col-md-6 px-2">
+                                            <button class="btn my-1 btn-secondary btn-block" data-dismiss="modal">No</button>
+                                        </div>
+                                        <div class="col-md-6 px-2">
+                                            <button class="btn my-1 btn-danger btn-block" type="submit">YES</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            </div>
+                        </div>
                             @endforeach
                     </tbody>
                 </table>

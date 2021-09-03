@@ -84,7 +84,7 @@ class EstimateController extends Controller
                 $estimate->services()->attach(
                     $service['service_id'],
                     ['quantity' => $service['quantity'],
-                     'price' => $item->price,
+                     'price' => $item->price ?? 0.1,
                      ]
                 );
             
@@ -131,7 +131,6 @@ class EstimateController extends Controller
         if ($request) {
             return back()->with('success','estimate status updated successfuly');
         }
-        else return back()->with('error','an error has occured');
         
     }
     public function createPDF($id) {
@@ -225,6 +224,31 @@ class EstimateController extends Controller
         // dd($pdf->output());
 
     }
+    public function deletedInvoices()
+    {
+        $user = auth()->user();
+        $i = 1;
+        $estimates = DB::table('estimates')
+        ->whereNotNull('deleted_at')
+        ->get();
+        return view('estimate.trash', compact('estimates','i','user'));
+
+    }
+    public function restoreInvoices($id)
+    {
+        $estimate = Estimate::withTrashed()->find($id);
+                $estimate->restore();
+        return redirect()->route('estimate.estimate');
+    }
+    public function forceDelete($id)
+    {
+        $estimate = Estimate::where('id',$id)->forceDelete();
+        if($estimate)
+        {
+            return back()->with('success','estimate permanently deleted');
+        }
+    }
+
     public function show($id)
     {
         $estimate = Estimate::findOrFail($id);  

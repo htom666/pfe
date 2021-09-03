@@ -137,7 +137,6 @@ class UserController extends Controller
             request()->file('personal_image')->storeAs(('/public/personal_image'),$user->id . '/' . $personal_image,'');
            $pr = User::where('id',$id)
             ->update(['personal_image'=>$personal_image]);
-            $pr->save();
         }
         DB::table('users')
         ->where('id',$id)

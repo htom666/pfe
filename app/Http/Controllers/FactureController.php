@@ -251,10 +251,10 @@ class FactureController extends Controller
     {
         $user = auth()->user();
         $i = 1;
-        $facture = DB::table('factures')
+        $factures = DB::table('factures')
         ->whereNotNull('deleted_at')
         ->get();
-        return view('facture.trash', compact('facture','i','user'));
+        return view('facture.trash', compact('factures','i','user'));
 
     }
     public function restoreInvoices($id)
@@ -263,6 +263,15 @@ class FactureController extends Controller
                 $facture->restore();
         return redirect()->route('facture.facture');
     }
+    public function forceDelete($id)
+    {
+        $invoice = Facture::where('id',$id)->forceDelete();
+        if($invoice)
+        {
+            return back()->with('success','invoice permanently deleted');
+        }
+    }
+
     public function payedInvoices()
         {
             $i=1;

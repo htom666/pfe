@@ -14,10 +14,12 @@ class EstimateProduct extends Migration
     public function up()
     {
         Schema::create('estimate_product', function (Blueprint $table) {
-            $table->integer('estimate_id');
-            $table->integer('product_id');
+            $table->integer('estimate_id')->unsigned();
+            $table->integer('product_id')->unsigned();
             $table->double('price');
             $table->integer('quantity');
+            $table->foreign('estimate_id')->references('id')->on('estimates')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();
           
         });
