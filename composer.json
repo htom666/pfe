@@ -19,6 +19,7 @@
         "laravel/ui": "^3.3",
         "livewire/livewire": "^2.4",
         "phpmailer/phpmailer": "^6.5",
+        "pragmarx/countries": "^0.7.2",
         "rinvex/countries": "^8.0",
         "symfony/process": "^5.3"
     },

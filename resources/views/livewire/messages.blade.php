@@ -8,19 +8,11 @@
             <div class="row">
                 <div class="col-md-6">
                     <h1 class="mb-0">Messenger</h1>
-                    {{-- <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb m-0 mt-3 p-0 breadcrumbs-chevron">
-                            <li class="breadcrumb-item"><a href="https://exon.arsaland.com/">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="https://exon.arsaland.com/">Applications</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Chat Application</li>
-                        </ol>
-                    </nav> --}}
+
                 </div>
             </div>
         </header>
 
-
-        <!-- Default -->
         <div class="panel">
             <div class="panel-body bg-secondary p-0">
 
@@ -35,11 +27,11 @@
                                     <h3 class="panel-title">Recent</h3>
                                 </div>
                             </div>
-                            <div class="form-group p-2 mb-0 bg-secondary">
+                            {{-- <div class="form-group p-2 mb-0 bg-secondary">
                                 <div class="input-group input-group-rounded input-group-search">
                                     <input type="search" id="myInput" class="form-control" placeholder="Search contacts...">
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="history-box" wire:poll="mountdata">
                                 @foreach($users as $user)
@@ -54,7 +46,11 @@
                                     <a wire:click="getUser({{$user->id}})" class="list-group-item">
                                         <div class="message">
                                             <div class="user-avatar">
-                                                <img src="../../../assets/avatars/8.jpg" class="avatar rounded-circle" alt="Avatar image">
+                                                @if($user->personal_image)
+                                                <img src="{{asset('storage/personal_image/'.$user->id.'/'.$user->personal_image)}}" class="avatar rounded-circle" alt="Avatar image">
+                                                @else
+                                                <img src="{{asset('assets/test.jpg')}}" class="avatar rounded-circle">
+                                                @endif
                                                 @if($user->is_online==true)
                                                 {{-- "badge badge-success color-badge badge-size-1" --}}
                                                 <span class="badge badge-success color-badge badge-size-1"></span>

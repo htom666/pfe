@@ -3,18 +3,17 @@
 <form method="POST" action="{{route('user.store')}}" class="h-100"  enctype="multipart/form-data">
 @csrf
 @if (Session::has('success'))
-<div class="alert alert-success alert-dismissible alert-dismissible-2"
-    data-animation="fadeOut" role="alert">
-    {{ Session::get('success') }}
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-            <path class="heroicon-ui"
-                d="M16.24 14.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 0 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12l2.83 2.83z">
-            </path>
-        </svg>
-    </button>
-</div>
-@endif
+                <div class="alert alert-success-light alert-dismissible" data-animation="fadeOutUp" role="alert">
+                    {{ Session::get('success') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                            <path class="heroicon-ui"
+                                d="M16.24 14.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 0 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12l2.83 2.83z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+            @endif
   <!-- Default -->
   <div class="panel panel-light">
     <div class="panel-header">
@@ -26,7 +25,7 @@
 
       <div class="form-group">
         <label for="">Name</label>
-        <input type="text" name="name" class="form-control">
+        <input type="text" name="name" value="{{old('name')}}" class="form-control">
         @error('name')
         <div class="error">
         {{ $message }}
@@ -36,7 +35,7 @@
 
       <div class="form-group">
         <label for="">Last name</label>
-        <input type="text" name="last_name" class="form-control">
+        <input type="text" name="last_name" value="{{old('last_name')}}" class="form-control">
         @error('last_name')
         <div class="error">
         {{ $message }}
@@ -46,7 +45,7 @@
 
       <div class="form-group">
         <label for="">Email</label>
-        <input type="Email" name="email" class="form-control">
+        <input type="Email" name="email" value="{{old('email')}}" class="form-control">
         @error('email')
         <div class="error">
         {{ $message }}
@@ -57,25 +56,17 @@
 
       <div class="form-group">
         <label for="">Password</label>
-        <input type="password" class="form-control" placeholder="Enter password here...">
+        <input  type="password" name="password" class="form-control" placeholder="Enter password here...">
         @error('password')
         <div class="error">
         {{ $message }}
          </div>
         @enderror
-        <small class="form-text text-muted">
-          Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
-        </small>
       </div>
 
       <div class="form-group">
         <label for="">Retype Password</label>
-        <input type="password" class="form-control" placeholder="Enter password here...">
-        @error('password')
-        <div class="error">
-        {{ $message }}
-         </div>
-        @enderror
+        <input type="password"  name="password_confirmation"  class="form-control" placeholder="Enter password here...">
         <small class="form-text text-muted">
         </small>
       </div>

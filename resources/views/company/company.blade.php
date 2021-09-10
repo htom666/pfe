@@ -41,8 +41,9 @@
                                 <th>
                                     Immartriclulation
                                 </th>
-                                
+                                @can('view-companies')
                                 <th width="2">Action</th>
+                                @endcan
                             </tr>
                         </thead>
                         <tbody>
@@ -57,6 +58,7 @@
                                     <td>{{$company->name}}</td>
                                     <td>{{$company->adresse}}</td>
                                     <td>{{$company->immatricule}}</td>
+                                    @can('view-companies')
                                     <td class="operations operations-buttons">
                                         {{-- <a href="{{ route('client.show',$company->id) }}" class="btn btn-sm btn-primary-light">View</a> --}}
                                         <a href="{{ route('company.editage', $company->id) }}" class="btn btn-sm btn-info-light">Edit</a>
@@ -64,6 +66,7 @@
                                             <span>Delete</span>
                                         </button>
                                     </td>
+                                    @endcan
                                 </tr>
                                 <div class="modal fade" tabindex="-1" role="dialog" id="confirm-modal">
             

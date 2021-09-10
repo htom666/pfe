@@ -20,7 +20,9 @@
                             <th>Discounts</th>
                             <th>Rest to pay</th>
                             <th>Discount created Date</th>
+                            @can('deleted-discounts')
                             <th> Action</th>
+                            @endcan
                         </tr>
                     </thead>
                     <thead>
@@ -31,7 +33,9 @@
                             <th>Discounts</th>
                             <th>Rest to pay</th>
                             <th>Discount created Date</th>
+                            @can('deleted-discounts')
                             <th>Action</th>
+                            @endcan
                         </tr>
                     </thead>
                     <tbody>
@@ -44,6 +48,7 @@
                             <td>{{ $discount->discount }}</td>
                             <td>{{ $discount->rest_to_pay }}</td>
                             <td>{{$discount->created_at}}</td>
+                            @can('deleted-discounts')
                             <td>
                                 <form action="{{ route('discount.destroy', $discount->id) }}" method="POST">
                                     @csrf
@@ -51,6 +56,7 @@
                                     <button type="submit" class="btn btn-sm btn-danger-light">Delete</button>
                                 </form>
                             </td>
+                            @endcan
                             </tr>
                             @endforeach
                     </tbody>

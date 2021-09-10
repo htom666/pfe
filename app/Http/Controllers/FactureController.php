@@ -185,7 +185,13 @@ class FactureController extends Controller
         set_time_limit(0);
         // $data = array();
         // retreive all records from db
-        $facture = Facture::findOrFail($id);  
+        $facture = Facture::findOrFail($id);
+        $id_c = $facture->client_id;
+        $clt = DB::table('clients')
+        ->where('id',$id_c)
+        ->first();
+        $emml =$clt->email;
+        
         $client = Client::all();
         $company= Company::all();
         // array_push($data, $facture,$client,$company);
@@ -214,7 +220,7 @@ class FactureController extends Controller
 
     //Recipients
     $mail->setFrom('no-reply@sloth-lab.com');
-    $mail->addAddress('hatemdahech1@gmail.com');     //Add a recipient
+    $mail->addAddress($emml);     //Add a recipient
 
     //Attachments  
      $mail->AddAttachment($_SERVER['DOCUMENT_ROOT'].'/invoice.pdf');     //Add attachments

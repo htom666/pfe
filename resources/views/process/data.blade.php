@@ -14,7 +14,7 @@
                 <div class="panel-header">
                     <h1 class="panel-title">Extracted invoice</h1>
                 </div>
-                <form action="{{route('process.store')}}" method="POST" enctype="multipart/form-data">
+                <form action="{{route('process.store')}}" method="POST">
                     @csrf
                 <div class="panel-body">
                     <div class="form-panel">
@@ -23,12 +23,22 @@
                             <div class="form-group">
                                 <label for="">Invoice Number</label>
                                 <input type="text" name="number" class="form-control" value="{{$number}}">
+                                @error('number')
+                                <div class="error">
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
         
         
                             <div class="form-group">
                                 <label for="">Invoice Date</label>
                                 <input type="text" name="date" class="form-control" value="{{$date}}">
+                                @error('date')
+                                <div class="error">
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
         
         
@@ -36,34 +46,55 @@
                             <div class="form-group">
                                 <label for="">Invoice Address</label>
                                 <input type="text" name="address" class="form-control" value="{{$adress}}">
+                                @error('address')
+                                <div class="error">
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
         
         
                             <div class="form-group">
                                 <label for="">Bill to</label>
                                 <input type="text" name="dest" class="form-control" value="{{$dest}}">
+                                @error('dest')
+                                <div class="error">
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
         
         
                             <div class="form-group">
                                 <label for="">Invoice Amount</label>
                                 <input type="text" name="amount" class="form-control" value="{{$amount}}">
+                                @error('amount')
+                                <div class="error">
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
         
         
                             <div class="form-group">
                                 <label for="">Products</label>
                                 <input type="text" name="products" class="form-control" value="{{$product}}">
+                                @error('products')
+                                <div class="error">
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
-                            <div class="form-group row mb-4">
+                            {{-- <img src="$img" name="invoice" style="display:none;"> --}}
+                            {{-- <div class="form-group row mb-4">
                                 <label class="col-md-3 pt-2">Invoice</label>
                                 <div class="col-md-6">
                                     <div class="custom-file custom-image custom-image-avatar">
-                                        <input type="file" name="invoice" data-placeholder="{{asset('storage/invoice/invoice.png')}}" value="{{asset('storage/invoice/invoice.png')}}" class="custom-image-input" id="customImage">
+                                        <input type="file" name="invoice" data-placeholder="{{asset('storage/invoice/invoice.png')}}" class="custom-image-input" id="customImage">
                                         <label class="custom-image-label" for="customImage">+</label>
                                     </div>
                                 </div>
-                        </div>
+                        </div> --}}
                         <div class="panel-footer">
                             <button type="submit" class="btn btn-primary px-5">Save</button>
                         </div>

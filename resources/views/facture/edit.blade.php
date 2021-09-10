@@ -27,7 +27,7 @@
                                 <div>
                                     <h6>Client Type : </h6>
                                     <br>
-                                    <select data-toggle="select2" data-search="true" class="custom-select" name="type_client" id="type">
+                                    <select data-toggle="select2" data-search="true" class="custom-select" name="type_client" id="type" onchange="filtreClients()">
                                         <option disabled selected>Select client type</option>
                                         <option value="client">Client</option>
                                         <option value="prospect">Prospect</option>
@@ -371,6 +371,16 @@
                 url: "/api/v1/adresse?id=" + x,
                 success: function(data) {
                     $('#company_address').val(data);
+                }
+            });
+        }
+        function filtreClients() {
+            var x = document.getElementById("type").value;
+            $.ajax({
+                type: "GET",
+                url: "/api/v1/filtreClients?type_client=" + x,
+                success: function(data) {
+                    $("#clients").html(data);
                 }
             });
         }

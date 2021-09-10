@@ -24,7 +24,7 @@
 
       <div class="form-group">
         <label for="">Password</label>
-        <input type="password" name="password" class="form-control" placeholder="Enter password here...">
+        <input type="password" name="password" value="{{$user->password}}" class="form-control" placeholder="Enter password here...">
         <small class="form-text text-muted">
           Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
         </small>
@@ -32,7 +32,7 @@
 
       <div class="form-group">
         <label for="">Retype Password</label>
-        <input type="password" name="password" class="form-control"  placeholder="Enter password here...">
+        <input type="password" name="password" class="form-control" value="{{$user->password}}" placeholder="Enter password here...">
         <small class="form-text text-muted">
           Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
         </small>

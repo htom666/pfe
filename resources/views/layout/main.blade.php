@@ -12,7 +12,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="icon" type="image/png" href="{{asset('assets/favicon.png')}}">
+    <link rel="icon" type="image/png"  width="500" height="600" href="{{asset('assets/favicon.png')}}">
     <link rel="apple-touch-icon" href="{{asset('assets/apple-touch-icon.png')}}">
 
     <link rel="stylesheet" href="{{asset('css/vendor.css')}}">

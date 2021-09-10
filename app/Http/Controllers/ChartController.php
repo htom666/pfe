@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use App\Models\Facture;
 use App\Models\Estimate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use ArielMejiaDev\LarapexCharts\LarapexChart;
 
 class ChartController extends Controller
@@ -73,7 +75,7 @@ class ChartController extends Controller
     $datas = array(0,0,0,0,0,0,0,0,0,0,0,0);
     foreach($months as $index =>$month)
     {
-        $datas[$month] = $facture[$index];
+        $datas[$month-1] = $facture[$index];
     }
     $active_estimates = DB::table('estimates')
     ->where('status','=',1)
@@ -106,6 +108,11 @@ class ChartController extends Controller
     $unpaidinvoice =  DB::table('factures')
     ->where('rest_to_pay','>','0')
     ->get();
-    return view('dashboard.index',compact('chart','chart2','chart3','chart4','datas','active_estimates','inactive_estimates','total_estimates','amount_estimates','users','invoices','days'));
+
+    $checks = Role::all();
+
+    // dd(public_path("storage\invoice\invoice.png"));
+   
+    return view('dashboard.index',compact('chart','chart2','chart3','chart4','datas','active_estimates','inactive_estimates','total_estimates','amount_estimates','users','invoices','days','expiration','current'));
     }
 }

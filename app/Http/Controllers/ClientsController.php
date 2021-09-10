@@ -6,8 +6,10 @@ use App\Models\Bank;
 use App\Models\Client;
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\ClientRequest;
+use PragmaRX\Countries\Package\Countries as Countries;
 
 class ClientsController extends Controller
 {
@@ -119,7 +121,17 @@ class ClientsController extends Controller
     }
     public function create()
     {
-         return view("client.create");
+        $countries = new Countries();
+        $all = $countries->all()->pluck('name.common')->toArray();
+    //     $country=$countries->where('name.common','Tunisia')
+    // ->first()
+    // ->hydrateStates()
+    // ->states
+    // ->sortBy('name')
+    // ->pluck('name', 'postal');
+    //     dd($country);
+
+         return view("client.create",compact('all'));
          
         
     }

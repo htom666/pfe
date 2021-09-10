@@ -26,7 +26,9 @@
                                     <th>Size</th>
                                     <th>Quantity</th>
                                     <th>Price</th>
+                                    @can('edit-products')
                                     <th>Action</th>
+                                    @endcan
                                 </tr>
                             </thead>
                             <tbody>
@@ -41,6 +43,7 @@
                                         <td>
                                             {{ $product->price }}
                                         </td>
+                                        @can('edit-products')
                                         <td class="operations">
                                             <a href="{{ route('product.show', $product->id) }}"
                                                 class="btn-icon btn btn-primary-light" data-toggle="tooltip" title="View">
@@ -76,6 +79,7 @@
                                             </button>
                                             </div>
                                         </td>
+                                        @endcan
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -83,10 +87,12 @@
                     </div>
                 </div>
             </div>
+            @can('edit-products')
             <div class="col-md-4 mt-4">
                 <button type="button" class="btn btn-info-lightened" data-toggle="modal" data-target="#modal-fade-scale">Add
                     Product</button>
             </div>
+            @endcan
         </div>
         <div class="modal modal-fade-scale" tabindex="-1" role="dialog" id="modal-fade-scale">
             <div class="modal-dialog modal-dialog-centered" role="document">

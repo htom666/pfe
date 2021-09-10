@@ -45,21 +45,63 @@ class User extends Authenticatable
 
     public function hasRole($permissions)
     {
-        $role = $this->role;
+        $role = $this->roles;
 
         if (!$role) {
             return false;
         }
 
         foreach($role->permissions as $permission){
-            if(is_array($permission) && in_array($permission,$permissions)){
+           // dd($permission);
+            if(is_string($permissions) && strcmp($permission,$permissions) == 0){
                 return true;
 
-            } else if (is_string($permissions) && strcmp($permissions,$permission) == 0)
+            } else if (is_string($permissions) && strcmp($permission,$permissions) == 0)
             {
                 return true;
             }
         }
         return false;
+        }
+    public function hasRole1($role)
+    {
+      if ($this->roles()->where('name', $role)->first()) {
+        return true;
+      }
+      return false;
     }
+
+
+public function hasRole2($permiession)
+{
+    $role = $this->roles;
+
+    if (!$role) {
+        return false;
+    } else{
+        
+
+        
+            
+            foreach($role->permissions as $p){
+            if($p == $permiession)
+                        return true;
+               
+             
+        } return false;
+    
+   
+    //  $checks = Role::all();
+
+    //     foreach ($checks as $check){
+    //         foreach($check->permissions as $p){
+    //              if($p == $permiession)
+    //                     return true;
+               
+    //          }
+    //  }
+     
+                    
+    }
+}
 }

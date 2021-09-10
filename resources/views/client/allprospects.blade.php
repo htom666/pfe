@@ -69,9 +69,15 @@
                                             @csrf
                                             @method('DELETE')
                                         <a href="{{ route('client.show',$client->id) }}" class="btn btn-sm btn-primary-light">View</a>
+                                        @can('edit-clients-type')
                                         <a href="{{ route('client.edittype',$client->id) }}" class="btn btn-sm btn-primary-light">Type</a>
+                                        @endcan
+                                        @can('edit-clients')
                                         <a href="{{ route('client.edit', $client->id) }}" class="btn btn-sm btn-info-light">Edit</a>
+                                        @endcan
+                                        @can('delete-clients')
                                         <button type="submit" class="btn btn-sm btn-danger-light">Delete</button>
+                                        @endcan
                                         </form>
                                     </td>
                                 </tr>
@@ -79,7 +85,9 @@
                             @endforeach
                         </tbody>
                     </table>
+                    @can('add-clients')
                     <a class="button m-1 btn btn-primary" href="{{ route('client.create') }}">Create Client</a>
+                    @endcan
                 </div>
 
             </div>

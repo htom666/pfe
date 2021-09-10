@@ -26,10 +26,10 @@
                                 <div>
                                     <h6>Client Type : </h6>
                                     <br>
-                                    <select data-toggle="select2" data-search="true" class="custom-select" name="type_client" id="type">
+                                    <select data-toggle="select2" data-search="true" class="custom-select" name="type_client" id="type" onchange="filtreClients()">
                                         <option disabled selected>Select client type</option>
-                                        <option value="client">Client</option>
-                                        <option value="prospect">Prospect</option>
+                                        <option value="Client">Client</option>
+                                        <option value="Prospect">Prospect</option>
                                     </select>
                                     </span>
                                 </div>
@@ -103,19 +103,6 @@
                                     </div>
 
                                 </div>
-                                {{-- <div class="text-grey-m2">
-                                    <div class="my-1">
-                                        <i
-                                            class="fa fa-phone fa-flip-horizontal text-secondary"></i>&nbsp;&nbsp;&nbsp;<input
-                                            type="text" id="phone" name="company_phone">
-
-                                    </div>
-                                    <div class="my-1">
-
-                                    </div>
-                                    <div class="my-1"><i class="far fa-address-book"></i>&nbsp;&nbsp;&nbsp;<input
-                                            type="text" id="company_address" name="company_address"></div>
-                                </div> --}}
                             </div>
                             <!-- /.col -->
                             
@@ -170,93 +157,10 @@
                                        </div>
                                        @enderror
                                     </div>
-                                    {{-- <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span
-                                            class="text-600 text-90">ID:</span><input type="text" id="invoice_number"
-                                            name="invoice_number"></div>
-
-                                    <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span
-                                            class="text-600 text-90">Issue Date:</span><input type="date"
-                                            name="invoice_date"></div>
-
-                                    <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span
-                                            class="text-600 text-90">Status:</span> <span
-                                            class="badge badge-warning badge-pill px-25">Unpaid</span></div> --}}
                                 </div>
                             </div>
                             <!-- /.col -->
                         </div>
-
-                        <!------ Include the above in your HEAD tag ---------->
-                        {{-- <div class="row clearfix">
-                            <div class="col-md-12">
-                                <table class="table table-bordered table-hover" id="tab_logic">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-center"> # </th>
-                                            <th class="text-center"> Product </th>
-                                            <th class="text-center"> Qty </th>
-                                            <th class="text-center"> Price </th>
-                                            <th class="text-center"> Total </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr id='addr0'>
-                                            <td>1</td>
-                                            <td><input type="text" name='product[]' placeholder='Enter Product Name'
-                                                    class="form-control" /></td>
-                                            <td><input type="number" name='qty[]' placeholder='Enter Qty'
-                                                    class="form-control qty" step="0" min="0" /></td>
-                                            <td><input type="number" name='price[]' placeholder='Enter Unit Price'
-                                                    class="form-control price" step="0.00" min="0" /></td>
-                                            <td><input type="number" name='total[]' placeholder='0.00'
-                                                    class="form-control total" readonly /></td>
-                                        </tr>
-                                        <tr id='addr1'></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="row clearfix">
-                            <div class="col-md-12">
-                                <button id="add_row" class="btn btn-default pull-left">Add Row</button>
-                                <button id='delete_row' class="pull-right btn btn-default">Delete Row</button>
-                            </div>
-                        </div>
-                        <div class="row clearfix" style="margin-top:20px">
-                            <div class="pull-right col-md-4">
-                                <table class="table table-bordered table-hover" id="tab_logic_total">
-                                    <tbody>
-                                        <tr>
-                                            <th class="text-center">Sub Total</th>
-                                            <td class="text-center"><input type="number" name='sub_total'
-                                                    placeholder='0.00' class="form-control" id="sub_total" readonly />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-center">Tax</th>
-                                            <td class="text-center">
-                                                <div class="input-group mb-2 mb-sm-0">
-                                                    <input type="number" class="form-control" id="tax" placeholder="0">
-                                                    <div class="input-group-addon">%</div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-center">Tax Amount</th>
-                                            <td class="text-center"><input type="number" name='tax_amount'
-                                                    id="tax_amount" placeholder='0.00' class="form-control" readonly />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-center">Grand Total</th>
-                                            <td class="text-center"><input type="number" name='total_amount'
-                                                    id="total_amount" placeholder='0.00' class="form-control"
-                                                    readonly /></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div> --}}
                         @livewire('products')
                         <button type="submit" class="btn btn-info-lightened">Create Estimate</button>
         </form>
@@ -450,6 +354,17 @@
                 url: "/api/v1/adresse?id=" + x,
                 success: function(data) {
                     $('#company_address').val(data);
+                }
+            });
+           
+        }
+        function filtreClients() {
+            var x = document.getElementById("type").value;
+            $.ajax({
+                type: "GET",
+                url: "/api/v1/filtreClients?type_client=" + x,
+                success: function(data) {
+                    $("#clients").html(data);
                 }
             });
         }

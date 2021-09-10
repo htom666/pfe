@@ -8,12 +8,18 @@ return [
         'edit-products' => 'edit products',
         'delete-products' => 'delete products',
         'view-all-products' => 'view all products',
+        'restore-deleted-products'=> 'restore deleted products',
+        'delete-products-permananly' => 'delete products permanantly',
+        'view-deleted-products' => 'view-deleted-products',
 
         'view-services' => 'view services',
         'view-all-services'=> 'view all services',
         'add-services' => 'add services',
         'edit-services' => 'edit services',
         'delete-services' => 'delete services',
+        'restore-deleted-services' => 'restore deleted services',
+        'delete-services-permanently' => 'delete-services-permanently',
+        'view-deleted-services' => 'view-deleted-services',
 
 
         'create-facture' => 'create invoice',
@@ -25,9 +31,10 @@ return [
         'generate-pdf-facture' => 'generate pdf',
         'change-facture-status' => 'change invoice status',
         'view-paidinvoices' => 'view paind invoices',
-        ' view-unpaidinvoices' => 'view unpaind invoices',
+        'view-unpaidinvoices' => 'view unpaind invoices',
         'send-invoice-mail' => 'send invoice mail',
         'print-invoice' => 'print invoice',
+        'delete-facture-permanently' => 'delete-facture-permanently',
 
 
         'view-discounts' => 'view discounts',
@@ -37,7 +44,7 @@ return [
 
         'create-deliveries' => 'make deliveries',
         'view-all-deliveries' => 'view all deliveries',
-        ' view-deliveries' => 'view discounts',
+        'view-deliveries' => 'view discounts',
         'edit-deliveries' => 'edit discounts',
 
 
@@ -50,6 +57,8 @@ return [
         'change-estimate-status' => 'change status estimates',
         'update-estimate-status' => 'update estimates status',
         'generate-estimate-pdf' => 'generate estimates',
+        'delete-estimate-permanently' => 'delete-estimate-permanently',
+        'view-deleted-estimates' => 'view-deleted-estimates',
 
 
         'view-all-clients'=>'view all clients',
@@ -85,9 +94,10 @@ return [
 
 
           'view-roles'=>'view roles',
-          ' create-roles' => 'create roles',
+          'create-roles' => 'create roles',
           'edit-roles' => 'edit-roles',
           'delete-roles' => 'delete roles',
+          
 
 
 
@@ -101,6 +111,18 @@ return [
             'delete-extracted' => 'deleted extracted',
 
 
-            'view-dashboard' =>'view dashboard'
+            'view-dashboard' =>'view dashboard',
+
+
+
+
+            'view-inventory' => 'view inventory',
+
+            'view-user-dashboard' => 'view users in dashboard',
+
+
+            'view-history' => 'view history',
+
+            'view-received-message' => 'view-receieved-message',
     ]
     ];

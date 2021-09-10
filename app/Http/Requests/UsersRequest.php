@@ -27,16 +27,9 @@ class UsersRequest extends FormRequest
             'name' => 'required',
             'last_name' => 'required',
             'email'=> 'required',
+            'password' => ['required','min:8', 'confirmed'],
+            'role_id' => 'required',
          
-        ];
-    }
-    public function messages()
-    {
-        return [
-            'name.required' => 'this field should no be empty',
-            'email.required' => 'this field should no be empty',     
-            'last_name.required' => 'this field should no be empty'
-
         ];
     }
 }

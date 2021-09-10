@@ -34,15 +34,16 @@ class UserController extends Controller
         $roles = Role::get();
             return view('user.create',compact('roles'));
     }
-    public function store(Request $request)
+    public function store(UsersRequest $request)
     {
         $user= User::create([
-            'name' => $request->name,
-            'email' =>$request->email,
-            'last_name'=>$request->last_name,
-            "password"=> Hash::make($request['password']),
+            "name" => $request->name,
+            "email" =>$request->email,
+            "last_name"=>$request->last_name,
             "role_id"=>$request->role_id,
+            "password"=>Hash::make($request['password']),
         ]);
+       
         if (request()->hasFile('personal_image')) {
             $personal_image = request()->file('personal_image')->getClientOriginalName();
             request()->file('personal_image')->storeAs(('/public/personal_image'),$user->id . '/' . $personal_image,'');
@@ -111,7 +112,7 @@ class UserController extends Controller
         ->update([
             "name"=>$request->name,
             "email"=>$request->email,
-            "password"=>Hash::make($request['pasword']),
+            "password"=>Hash::make($request['password']),
             "role_id"=>$request->role_id,
         ]);
         return back()->with('success','user updated successfuly');
@@ -150,7 +151,7 @@ class UserController extends Controller
             "tax_ref_number" => $request->tax_ref_number,
             "password"=> Hash::make($request['password']),
         ]);
-        return back()->with('success','user updated successfuly');
+        return back()->with('success','profile updated successfuly');
         
     }
 }

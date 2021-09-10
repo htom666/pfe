@@ -5,7 +5,9 @@
         <h1 class="panel-title">Paid Invoice List</h1>
     </div>
     <div class="panel-body">
+        @can('create-facture')
         <a href="{{route('facture.create')}}" class="btn btn-info-lightened"><span>Add new invoice</span></a>
+        @endcan
         <br>
         <br>
         <div class="row">

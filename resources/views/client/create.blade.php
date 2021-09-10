@@ -53,26 +53,57 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="col-md-6 mb-3">
+                        {{-- <div class="form-group">
+                            <div class="col-md-6 mb-3">
                             <label for="validationCustom03">City</label>
-                            <input type="text" name="city" class="form-control" id="validationCustom03" placeholder="City">
+                            <select data-toggle="select2" data-search="true" class="custom-select" name="city" id="city" onchange="getState()">
+              
+                                <option disabled selected>Select City</option>
+                                @foreach($all as $alls)
+                                 <option value="{{ $alls }}">{{ $alls }}</option>
+                                 @endforeach
+                            </select>
+                            @error('city')
+                            <div class="error">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        </div> --}}
+                        <div class="col-md-4 mb-3">
+                            <label for="validationCustom02">City</label>
+                            <input type="text" name="city" class="form-control" id="validationCustom02" placeholder="Last name">
                             @error('city')
                            <div class="error">
                                {{ $message }}
                            </div>
                            @enderror
                         </div>
-                        <div class="col-md-3 mb-3">
-                            <label for="validationCustom04">State</label>
-                            <input type="text" name="state" class="form-control" id="validationCustom04" placeholder="State">
-                            <div class="invalid-feedback">
+                        <div class="col-md-4 mb-3">
+                            <label for="validationCustom02">State</label>
+                            <input type="text" name="state" class="form-control" id="validationCustom02" placeholder="Last name">
+                            @error('state')
+                           <div class="error">
+                               {{ $message }}
+                           </div>
+                           @enderror
+                        </div>
+                        {{-- <div class="col-md-3 mb-3">
+                            <div class="form-group">
+                                <div class="col-md-6 mb-3">
+                                <label for="validationCustom03">State</label>
+                                <select data-toggle="select2" data-search="true" class="custom-select" name="state" id="state">
+                  
+                                    <option disabled selected>Select state</option>
+                                </select>
                                 @error('state')
                                 <div class="error">
                                     {{ $message }}
                                 </div>
                                 @enderror
                             </div>
-                        </div>
+                            </div>
+                        </div> --}}
                         <div class="col-md-3 mb-3">
                             <label for="validationCustom05">Zip</label>
                             <input type="text" name="zip" class="form-control" id="validationCustom05" placeholder="Zip">
@@ -158,4 +189,17 @@
     <button type="submit" class="btn btn-info-lightened">Create client</button>
 </div>
 </form>
+<script>
+function getState() {
+    var x = document.getElementById("city").value;
+    $.ajax({
+        type: "GET",
+        url: "/api/v1/state?id=" + x,
+        success: function(data) {
+            $("#state").html(data);
+        }
+    });
+}
+</script>
+
 @endsection

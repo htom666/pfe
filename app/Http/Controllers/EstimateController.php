@@ -162,6 +162,15 @@ class EstimateController extends Controller
         set_time_limit(0);
         // $data = array();
         // retreive all records from db
+        $facture = Estimate::findOrFail($id);
+        $id_c = $facture->client_id;
+        $clt = DB::table('clients')
+        ->where('id',$id_c)
+        ->first();
+        $emml =$clt->email;
+
+
+
         $estimate = Estimate::findOrFail($id);  
         $client = Client::all();
         $company= Company::all();
@@ -191,10 +200,10 @@ class EstimateController extends Controller
 
     //Recipients
     $mail->setFrom('no-reply@sloth-lab.com');
-    $mail->addAddress('amine.kacem1337@gmail.com');     //Add a recipient
+    $mail->addAddress($emml);     //Add a recipient
 
     //Attachments  
-     $mail->AddAttachment($_SERVER['DOCUMENT_ROOT'].'/invoice.pdf');     //Add attachments
+     $mail->AddAttachment($_SERVER['DOCUMENT_ROOT'].'/estimate.pdf');     //Add attachments
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
     $mail->Subject = 'SLOTH-LAB';

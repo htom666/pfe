@@ -83,7 +83,7 @@
 
             </ul>
         </li>
-
+        @can('view-history')
         <li>
             <a href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 6 4 L 6 28 L 26 28 L 26 4 Z M 8 6 L 24 6 L 24 11 L 8 11 Z M 8 13 L 24 13 L 24 19 L 8 19 Z M 8 21 L 24 21 L 24 26 L 8 26 Z"/></svg>
@@ -116,6 +116,7 @@
                 </li>
             </ul>
         </li>
+        @endcan
         <li>
             <a href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 6 4 L 6 28 L 26 28 L 26 4 Z M 8 6 L 24 6 L 24 11 L 8 11 Z M 8 13 L 24 13 L 24 19 L 8 19 Z M 8 21 L 24 21 L 24 26 L 8 26 Z"/></svg>
@@ -160,11 +161,12 @@
                 </li>
             </ul>
         </li>
-
+        @can('edit-profile')
         <li class="header-menu">
             <span>My Profile</span>
+            @endcan
         </li>
-
+        @can('edit-profile')
         <li>
             <a href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 6 3 L 6 29 L 26 29 L 26 3 Z M 8 5 L 24 5 L 24 27 L 8 27 Z M 10 7 L 10 13 L 22 13 L 22 7 Z M 12 9 L 20 9 L 20 11 L 12 11 Z M 11 15 L 11 17 L 13 17 L 13 15 Z M 15 15 L 15 17 L 17 17 L 17 15 Z M 19 15 L 19 17 L 21 17 L 21 15 Z M 11 19 L 11 21 L 13 21 L 13 19 Z M 15 19 L 15 21 L 17 21 L 17 19 Z M 19 19 L 19 21 L 21 21 L 21 19 Z M 11 23 L 11 25 L 13 25 L 13 23 Z M 15 23 L 15 25 L 17 25 L 17 23 Z M 19 23 L 19 25 L 21 25 L 21 23 Z"/></svg>
@@ -187,8 +189,10 @@
                 </li>
             </ul>
         </li>
-
+        @endcan
+        @can('view-all-users')
         <li>
+            
             <a href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 5 5 L 5 27 L 27 27 L 27 5 L 5 5 z M 7 7 L 15 7 L 15 15 L 7 15 L 7 7 z M 17 7 L 25 7 L 25 15 L 17 15 L 17 7 z M 7 17 L 15 17 L 15 25 L 7 25 L 7 17 z M 17 17 L 25 17 L 25 25 L 17 25 L 17 17 z"/></svg>
                 <span>Users</span>
@@ -205,6 +209,8 @@
                 </li>
             </ul>
         </li>
+        @endcan
+        @can('view-roles')
         <li>
             <a href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 5 5 L 5 27 L 27 27 L 27 5 L 5 5 z M 7 7 L 15 7 L 15 15 L 7 15 L 7 7 z M 17 7 L 25 7 L 25 15 L 17 15 L 17 7 z M 7 17 L 15 17 L 15 25 L 7 25 L 7 17 z M 17 17 L 25 17 L 25 25 L 17 25 L 17 17 z"/></svg>
@@ -221,6 +227,7 @@
                 </li>
             </ul>
         </li>
+        @endcan
 
         <li>
             <a href="#">
@@ -254,12 +261,13 @@
                         Contact Admin
                     </a>
                 </li>
-
+                @can('view-received-message')
                 <li class="nav-item {{Request::is('contact') ? 'current active':'';}}">
                     <a href="{{route('contact.contact')}}">
                         Received messages
                     </a>
                 </li>
+                @endcan
             </ul>
         </li>
 

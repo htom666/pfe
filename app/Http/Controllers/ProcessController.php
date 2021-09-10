@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ExtractedRequest;
 use App\Models\Extracted;
-use App\Models\ExtractedInvoice;
 use Illuminate\Http\Request;
+use App\Models\ExtractedInvoice;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\Process\Process;
 use Illuminate\Support\Facades\Storage;
@@ -50,7 +51,7 @@ class ProcessController extends Controller
     {
         $extracted=Extracted::find($id)->delete();
         if($extracted){
-            return back()->with('success','product deleted successfully');
+            return back()->with('success','Invoice deleted successfully');
 
         }
     }
@@ -129,11 +130,15 @@ class ProcessController extends Controller
     $dest = $data[10];
     $amount = $data[11];
     $product = $data[12];
+    // dd($invoice);
 
     return view('process.data',compact('number','date','adress','dest','amount','product'));
     }
 
     public function store(Request $request){
+    //     $invoice = "invoice.png";
+      
+    //   dd(Storage::get('public/invoice/invoice.png'));
         $extracted =Extracted::create([
             "number"=>$request->number,
             "date" =>$request->date,
@@ -141,22 +146,19 @@ class ProcessController extends Controller
             "dest" =>$request->dest,
             "amout"=>$request->amount,
             "product" =>$request->products,
+         
         ]);
-            if (request()->hasFile('invoice')) {
-                $invoice = request()->file('invoice')->getClientOriginalName();
-                request()->file('invoice')->storeAs(('/public/invoices'),$extracted->id. '/' . $invoice,'');
-                $extracted->update(['invoice'=>$invoice]);
-            }
+      
+        $name = storage_path('app\\public\\invoice\\invoice.png');
+        $newimg = storage_path("app\\public\\invoices\\".$extracted->id. '.png');
+       // dd(file_exists($name));
+                copy($name,$newimg);
+                $extracted->update(['invoice' =>$extracted->id. '.png']);
         if($extracted){
-            // Session::flash('success', 'Product is added successfully');
             return redirect('process')->with('success','Invoice created successfuly');
-        }else
-        {
-            return redirect('process')->with('error','An error has accured ');
-        }
         }
 
-
+        }
 
 
     // public function getdata()

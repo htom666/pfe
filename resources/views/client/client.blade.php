@@ -66,11 +66,17 @@
                                     </td>
                                     <td class="operations operations-buttons">
                                         <a href="{{ route('client.show',$client->id) }}" class="btn btn-sm btn-primary-light">View</a>
+                                        @can('edit-clients-type')
                                         <a href="{{ route('client.edittype',$client->id) }}" class="btn btn-sm btn-primary-light">Type</a>
+                                        @endcan
+                                        @can('edit-clients')
                                         <a href="{{ route('client.edit', $client->id) }}" class="btn btn-sm btn-info-light">Edit</a>
+                                        @endcan
+                                        @can('delete-clients')
                                         <button type="submit"  class="btn btn-sm btn-danger-light"  data-toggle="modal" data-target="#confirm-modal">
                                             <span>Delete</span>
                                         </button>
+                                        @endcan
                                     </td>
                                 </tr>
                                 <div class="modal fade" tabindex="-1" role="dialog" id="confirm-modal">

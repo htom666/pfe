@@ -152,7 +152,11 @@
                 <li class="nav-item nav-user-dropdown dropdown">
                     <a href="#" class="nav-link dropdown-toggle dropdown-nocaret" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ auth()->user()->name }}
+                        @if(auth()->user()->personal_image)
                         <img src="{{asset('storage/personal_image/'.auth()->user()->id.'/'.auth()->user()->personal_image)}}" class="avatar avatar-1 rounded-circle" alt="Avatar image">
+                        @else
+                        <img src="{{asset('assets/test.jpg')}}" class="avatar avatar-1 rounded-circle">
+                        @endif
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('logout') }}"

@@ -195,13 +195,42 @@ class DeliveryController extends Controller
 
     public function update(Request $request)
     {
+        $del_id = $request->id;
+        $delivery =Delivery::find($del_id);
+        $id_del = $delivery->id;
         $t =  $request->input('products');
+        $f_id = DB::table('deliveries')
+        ->where('id',$id_del)
+        ->pluck('facutre_id');
+       
         foreach($t as $t)
         {
-            DB::table('delivery')
-            ->where('products[product_id]',$t)
+            
+            // DB::table('deliveries')
+            // ->where('id',$id_del)
+            // ->delete();
+
+            // $test =DB::table('facture_products')
+            // ->where('facture_id',$f_id)
+            // ->where('product_id',$t)
+            // ->select('status');
+            // $test->update(status,1);
+
+            DB::table('facture_products')
+             ->where('product_id',$t)
+             ->where('facture_id',$f_id)
+            ->update(['status' =>'0']);
+            
+            // ->update(['status' =>'1']);
+            
+
+            DB::table('deliveries')
+            ->where('id',$id_del)
             ->delete();
+
+            
         }
+        return redirect('/delivery');
 
 
 

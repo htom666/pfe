@@ -34,10 +34,12 @@
                         <p>
                             Start by adding an invoice !
                         </p>
+                        @can('create-facture')
                         <a href="{{ route('facture.create') }}" class="btn btn-has-icon btn-primary">
                             <span>Create invoice</span>
                             <span class="icon"><i class="fas fa-arrow-right"></i></span>
                         </a>
+                        @endcan
                     </div>
 
                 </div>
@@ -54,7 +56,7 @@
                             If you need anything or you encountred anything
                             please contact us.
                         </p>
-                        <a href="{{route('user.chat')}}" type="button" class="btn btn-has-icon btn-icon-split btn-light text-primary">
+                        <a href="{{route('contact-form')}}" type="button" class="btn btn-has-icon btn-icon-split btn-light text-primary">
                             <span class="icon"><i class="fas fa-envelope"></i></span>
                             <span>Contact Us</span>
                         </a>
@@ -72,7 +74,9 @@
                         <h3 class="panel-title">Invoices</h3>
                         <div class="panel-toolbar">
                             <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                                @can('create-facture')
                                 <a type="button" href="{{route('facture.create')}}" class="btn btn-sm btn-success-lightened">ADD</a>
+                                @endcan
                             </div>
                         </div>
                     </div>
@@ -100,12 +104,13 @@
                                         <p class="time"><i class="far fa-clock"></i> {{$invoice->expiration_date}}</p>
                                     </td>
 									<td>
-                                        @if($days==0)
+                                        
+                                        @if((\Carbon\Carbon::parse($invoice->expiration_date))->diffInDays(\Carbon\Carbon::now())==0)
                                         <span class="m-1 badge badge-danger-light">Expired</span>
-										@elseif($days >= 10)
-										<span class="m-1 badge badge-success-light">{{$days}} days left till expiration</span>
-										@elseif($days<=10)
-										<span class="m-1 badge badge-warning-light">{{$days}} days left till expiration</span>
+										@elseif((\Carbon\Carbon::parse($invoice->expiration_date))->diffInDays(\Carbon\Carbon::now()) >= 10)
+										<span class="m-1 badge badge-success-light">{{(\Carbon\Carbon::parse($invoice->expiration_date))->diffInDays(\Carbon\Carbon::now())}} days left till expiration</span>
+										@elseif((\Carbon\Carbon::parse($invoice->expiration_date))->diffInDays(\Carbon\Carbon::now())<=10)
+										<span class="m-1 badge badge-warning-light">{{(\Carbon\Carbon::parse($invoice->expiration_date))->diffInDays(\Carbon\Carbon::now())}} days left till expiration</span>
 										@endif
 
 									</td>
@@ -286,7 +291,7 @@
 			</div>
 		</div>
     </div>
-
+    @can('view-user-dashboard')
 		<!-- Notifications -->
 		<div class="panel panel-light">
 			<div class="panel-header">
@@ -300,7 +305,12 @@
 					@foreach($users as $user)
 					<li class="list-group-item">
 						<div class="user-avatar">
+                            @if($user->personal_image)
 							<img src="{{asset('storage/personal_image/'.$user->id.'/'.$user->personal_image)}}" class="avatar rounded-circle" alt="Avatar image">
+                            @else
+                            <img src="{{asset('assets/test.jpg')}}" class="avatar rounded-circle" alt="Avatar image">
+                            @endif
+                            
 							<span class="badge badge-success color-badge"></span>
 						</div>
 						<div class="item-info">
@@ -317,6 +327,7 @@
 
 			</div>
 		</div>
+        @endcan
     </div>
 
 
@@ -405,8 +416,7 @@
             var barChart = new Chart(mainChart, {
                 type: 'bar',
                 data: {
-                    labels: ['Jan', 'Feb', 'March', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sep', 'Oct', 'Nov',
-                        'Dec'
+                    labels: ['Jan', 'Feb', 'March', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sep', 'Oct', 'Nov','Dec'
                     ],
                     datasets: [{
                         label: 'Invoices Per month',
@@ -420,7 +430,7 @@
                     scales: {
                         yAxes: [{
                             ticks: {
-                                beginAtZero: true
+                                beginAtZero: false
                             }
                         }]
                     }
